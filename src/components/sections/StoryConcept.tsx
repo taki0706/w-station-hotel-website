@@ -203,7 +203,7 @@ const StoryConcept: React.FC<StoryConceptProps> = ({ content }) => {
                             {content.storyConcept.kenDescriptionLine2}<br /><br />
                             {content.storyConcept.kenDescriptionLine3}
                         </p>
-                        <Link to="/story" style={{
+                        <Link to="/story#ken" style={{
                             textDecoration: 'underline',
                             fontSize: '0.9rem',
                             letterSpacing: '0.05em'
@@ -215,55 +215,61 @@ const StoryConcept: React.FC<StoryConceptProps> = ({ content }) => {
                     {/* Wrapper for small cards to handle mobile horizontal scroll */}
                     <div className="small-cards-container">
                         {/* Small Item 1: Stay & Work */}
-                        <motion.div
-                            className="bento-item story-small-card"
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.3 }}
-                        >
-                            <img className="story-small-card-image" src={content.storyConcept.cards.stayWork.imageSrc} alt={content.storyConcept.cards.stayWork.imageAlt} />
-                            <div className="story-small-card-overlay">
-                                <div>
-                                    <h4 className="story-small-card-title">{content.storyConcept.cards.stayWork.title}</h4>
-                                    <p className="story-small-card-subtitle">{content.storyConcept.cards.stayWork.subtitle}</p>
+                        <Link to="/story#stay-style" style={{ textDecoration: 'none', color: 'inherit' }}>
+                            <motion.div
+                                className="bento-item story-small-card"
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.3 }}
+                            >
+                                <img className="story-small-card-image" src={content.storyConcept.cards.stayWork.imageSrc} alt={content.storyConcept.cards.stayWork.imageAlt} />
+                                <div className="story-small-card-overlay">
+                                    <div>
+                                        <h4 className="story-small-card-title">{content.storyConcept.cards.stayWork.title}</h4>
+                                        <p className="story-small-card-subtitle">{content.storyConcept.cards.stayWork.subtitle}</p>
+                                    </div>
                                 </div>
-                            </div>
-                        </motion.div>
+                            </motion.div>
+                        </Link>
 
                         {/* Small Item 2: Eco */}
-                        <motion.div
-                            className="bento-item story-small-card"
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.4 }}
-                        >
-                            <img className="story-small-card-image" src={content.storyConcept.cards.eco.imageSrc} alt={content.storyConcept.cards.eco.imageAlt} />
-                            <div className="story-small-card-overlay">
-                                <div>
-                                    <h4 className="story-small-card-title">{content.storyConcept.cards.eco.title}</h4>
-                                    <p className="story-small-card-subtitle">{content.storyConcept.cards.eco.subtitle}</p>
+                        <Link to="/story#eco" style={{ textDecoration: 'none', color: 'inherit' }}>
+                            <motion.div
+                                className="bento-item story-small-card"
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.4 }}
+                            >
+                                <img className="story-small-card-image" src={content.storyConcept.cards.eco.imageSrc} alt={content.storyConcept.cards.eco.imageAlt} />
+                                <div className="story-small-card-overlay">
+                                    <div>
+                                        <h4 className="story-small-card-title">{content.storyConcept.cards.eco.title}</h4>
+                                        <p className="story-small-card-subtitle">{content.storyConcept.cards.eco.subtitle}</p>
+                                    </div>
                                 </div>
-                            </div>
-                        </motion.div>
+                            </motion.div>
+                        </Link>
 
                         {/* Small Item 3: Space */}
-                        <motion.div
-                            className="bento-item story-small-card"
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.5 }}
-                        >
-                            <img className="story-small-card-image" src={content.storyConcept.cards.space.imageSrc} alt={content.storyConcept.cards.space.imageAlt} />
-                            <div className="story-small-card-overlay">
-                                <div>
-                                    <h4 className="story-small-card-title">{content.storyConcept.cards.space.title}</h4>
-                                    <p className="story-small-card-subtitle">{content.storyConcept.cards.space.subtitle}</p>
+                        <Link to="/story#space-design" style={{ textDecoration: 'none', color: 'inherit' }}>
+                            <motion.div
+                                className="bento-item story-small-card"
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.5 }}
+                            >
+                                <img className="story-small-card-image" src={content.storyConcept.cards.space.imageSrc} alt={content.storyConcept.cards.space.imageAlt} />
+                                <div className="story-small-card-overlay">
+                                    <div>
+                                        <h4 className="story-small-card-title">{content.storyConcept.cards.space.title}</h4>
+                                        <p className="story-small-card-subtitle">{content.storyConcept.cards.space.subtitle}</p>
+                                    </div>
                                 </div>
-                            </div>
-                        </motion.div>
+                            </motion.div>
+                        </Link>
                     </div>
 
                 </div>

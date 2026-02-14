@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { type Locale, type SiteContent } from '../../content/siteContent';
 
@@ -10,6 +10,7 @@ type HeaderProps = {
 };
 
 const Header: React.FC<HeaderProps> = ({ content, locale, onLocaleChange }) => {
+    const location = useLocation();
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -17,9 +18,13 @@ const Header: React.FC<HeaderProps> = ({ content, locale, onLocaleChange }) => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 50);
         };
+
+        handleScroll();
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
+
+    const isSolidHeader = isScrolled || location.pathname !== '/';
 
     // Header styles
     const headerStyle: React.CSSProperties = {
@@ -28,15 +33,15 @@ const Header: React.FC<HeaderProps> = ({ content, locale, onLocaleChange }) => {
         left: 0,
         width: '100%',
         zIndex: 1000,
-        padding: isScrolled ? '20px 40px' : '40px',
-        backgroundColor: isScrolled ? 'rgba(255, 255, 255, 0.95)' : 'transparent',
-        color: isScrolled ? 'var(--color-text)' : 'white',
+        padding: isSolidHeader ? '20px 40px' : '40px',
+        backgroundColor: isSolidHeader ? 'rgba(255, 255, 255, 0.95)' : 'transparent',
+        color: isSolidHeader ? 'var(--color-text)' : 'white',
         transition: 'all 0.4s ease',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        backdropFilter: isScrolled ? 'blur(10px)' : 'none',
-        boxShadow: isScrolled ? '0 2px 20px rgba(0,0,0,0.05)' : 'none',
+        backdropFilter: isSolidHeader ? 'blur(10px)' : 'none',
+        boxShadow: isSolidHeader ? '0 2px 20px rgba(0,0,0,0.05)' : 'none',
     };
 
     const navLinkStyle = {
@@ -59,7 +64,7 @@ const Header: React.FC<HeaderProps> = ({ content, locale, onLocaleChange }) => {
 
     const languageWrapperStyle: React.CSSProperties = {
         display: 'flex',
-        border: `1px solid ${isScrolled ? 'var(--color-text)' : 'white'}`
+        border: `1px solid ${isSolidHeader ? 'var(--color-text)' : 'white'}`
     };
 
     return (
@@ -84,8 +89,8 @@ const Header: React.FC<HeaderProps> = ({ content, locale, onLocaleChange }) => {
                             aria-pressed={locale === 'jp'}
                             style={{
                                 ...languageButtonStyle,
-                                backgroundColor: locale === 'jp' ? (isScrolled ? 'var(--color-text)' : 'white') : 'transparent',
-                                color: locale === 'jp' ? (isScrolled ? 'white' : 'var(--color-text)') : 'inherit'
+                                backgroundColor: locale === 'jp' ? (isSolidHeader ? 'var(--color-text)' : 'white') : 'transparent',
+                                color: locale === 'jp' ? (isSolidHeader ? 'white' : 'var(--color-text)') : 'inherit'
                             }}
                         >
                             JP
@@ -96,8 +101,8 @@ const Header: React.FC<HeaderProps> = ({ content, locale, onLocaleChange }) => {
                             aria-pressed={locale === 'en'}
                             style={{
                                 ...languageButtonStyle,
-                                backgroundColor: locale === 'en' ? (isScrolled ? 'var(--color-text)' : 'white') : 'transparent',
-                                color: locale === 'en' ? (isScrolled ? 'white' : 'var(--color-text)') : 'inherit'
+                                backgroundColor: locale === 'en' ? (isSolidHeader ? 'var(--color-text)' : 'white') : 'transparent',
+                                color: locale === 'en' ? (isSolidHeader ? 'white' : 'var(--color-text)') : 'inherit'
                             }}
                         >
                             EN
@@ -105,8 +110,8 @@ const Header: React.FC<HeaderProps> = ({ content, locale, onLocaleChange }) => {
                     </div>
 
                     <Link className="site-header-cta" to="/booking" style={{
-                        background: isScrolled ? 'var(--color-text)' : 'white',
-                        color: isScrolled ? 'white' : 'var(--color-text)',
+                        background: isSolidHeader ? 'var(--color-text)' : 'white',
+                        color: isSolidHeader ? 'white' : 'var(--color-text)',
                         padding: '12px 24px',
                         textDecoration: 'none',
                         fontFamily: 'var(--font-sans)',
