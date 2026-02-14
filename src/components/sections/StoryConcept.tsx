@@ -110,6 +110,10 @@ const StoryConcept: React.FC<StoryConceptProps> = ({ content }) => {
                         gap: 5px;
                         margin-top: 10px;
                     }
+                    .small-cards-container > a {
+                        display: block;
+                        min-width: 0;
+                    }
 
                     .story-small-card { 
                         aspect-ratio: 1/1; /* Square or vertical for tight fit */
@@ -150,21 +154,24 @@ const StoryConcept: React.FC<StoryConceptProps> = ({ content }) => {
                             font-size: 0.95rem; /* Standard text size */
                         }
 
-                        /* Disable Mobile Grid, return to Bento Grid positions */
+                        /* Keep small cards as a dedicated 3-column grid on desktop */
                         .small-cards-container {
-                            display: contents; /* Remove container styling, let children be grid items */
+                            grid-column: span 12;
+                            display: grid;
+                            grid-template-columns: repeat(3, minmax(0, 1fr));
+                            gap: 5px;
                             margin: 0;
-                            padding: 0;
                         }
                         .story-small-card { 
-                            grid-column: span 4; 
-                            grid-row: span 1; 
                             aspect-ratio: auto; 
-                            min-width: auto;
-                            flex: none;
+                            min-width: 0;
+                            min-height: 220px;
+                            height: 100%;
                         }
                         .story-small-card-subtitle {
                             display: block; /* Show subtitle on desktop */
+                            font-size: 0.85rem;
+                            line-height: 1.4;
                         }
                         .story-small-card-overlay {
                              padding: 20px;
