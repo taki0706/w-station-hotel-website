@@ -3,13 +3,14 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import TopPage from './pages/TopPage';
+import { siteContent } from './content/siteContent';
 
 // Placeholder pages
-const StoryPage = () => <div className="section container">Story & Concept Page (Coming Soon)</div>;
-const FeaturePage = () => <div className="section container">Feature Page (Coming Soon)</div>;
-const RoomsPage = () => <div className="section container">Rooms Page (Coming Soon)</div>;
-const AccessPage = () => <div className="section container">Access Page (Coming Soon)</div>;
-const BookingPage = () => <div className="section container">Booking Page (Coming Soon)</div>;
+const StoryPage = () => <div className="section container">{siteContent.pages.story}</div>;
+const FeaturePage = () => <div className="section container">{siteContent.pages.feature}</div>;
+const RoomsPage = () => <div className="section container">{siteContent.pages.rooms}</div>;
+const AccessPage = () => <div className="section container">{siteContent.pages.access}</div>;
+const BookingPage = () => <div className="section container">{siteContent.pages.booking}</div>;
 
 const App: React.FC = () => {
     return (

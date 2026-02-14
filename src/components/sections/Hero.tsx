@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import heroImg from '../../assets/images/hero/main.jpg';
+import { siteContent } from '../../content/siteContent';
 
 const Hero: React.FC = () => {
     return (
@@ -21,7 +21,7 @@ const Hero: React.FC = () => {
                 left: 0,
                 width: '100%',
                 height: '100%',
-                backgroundImage: `url(${heroImg})`,
+                backgroundImage: `url(${siteContent.hero.imageSrc})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 zIndex: -1
@@ -49,7 +49,7 @@ const Hero: React.FC = () => {
                         fontFamily: 'var(--font-sans)',
                         textTransform: 'uppercase'
                     }}>
-                        Station Front x Art x Surf & Work x ZEB
+                        {siteContent.hero.tagline}
                     </h2>
                     <h1 style={{
                         fontSize: 'clamp(3rem, 8vw, 6rem)',
@@ -57,7 +57,7 @@ const Hero: React.FC = () => {
                         lineHeight: 1.1,
                         fontFamily: 'var(--font-serif)'
                     }}>
-                        W.STATION<br />HOTEL
+                        {siteContent.hero.titleTop}<br />{siteContent.hero.titleBottom}
                     </h1>
 
                     <motion.div
@@ -86,15 +86,10 @@ const Hero: React.FC = () => {
                                 e.currentTarget.style.color = 'white';
                             }}
                         >
-                            CHECK AVAILABILITY
+                            {siteContent.hero.cta}
                         </Link>
                     </motion.div>
                 </motion.div>
-            </div>
-
-            <div style={{ position: 'absolute', bottom: '2rem', left: '50%', transform: 'translateX(-50%)', color: 'white', fontSize: '0.8rem', letterSpacing: '0.1em' }}>
-                SCROLL
-                <div style={{ width: '1px', height: '40px', background: 'white', margin: '10px auto 0', opacity: 0.5 }}></div>
             </div>
         </section>
     );

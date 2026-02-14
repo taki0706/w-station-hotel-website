@@ -1,10 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import kenImg from '../../assets/images/story/ken.jpg';
-import morningImg from '../../assets/images/story/morning.jpg';
-import ecoImg from '../../assets/images/story/eco.jpg';
-import spaceImg from '../../assets/images/story/space.jpg';
+import { siteContent } from '../../content/siteContent';
 
 const StoryConcept: React.FC = () => {
     return (
@@ -17,19 +14,19 @@ const StoryConcept: React.FC = () => {
                         viewport={{ once: true }}
                         style={{ fontSize: '3rem', marginBottom: '1rem', fontFamily: 'var(--font-serif)' }}
                     >
-                        Story & Concept
+                        {siteContent.storyConcept.heading}
                     </motion.h2>
                     <p style={{ maxWidth: '600px', margin: '0 auto', color: '#666', fontSize: '0.95rem' }}>
-                        ただのホテルではない。<br />
-                        アート、自然、そして人々が交差する場所。<br />
-                        W.STATIONの世界観を感じてください。
+                        {siteContent.storyConcept.introLine1}<br />
+                        {siteContent.storyConcept.introLine2}<br />
+                        {siteContent.storyConcept.introLine3}
                     </p>
                 </div>
 
                 <div className="bento-grid" style={{
                     display: 'grid',
                     gridTemplateColumns: 'repeat(12, 1fr)',
-                    gap: '24px',
+                    gap: '5px',
                     padding: '0 20px'
                 }}>
                     {/* Inline styles for responsive grid are handled via class or we can use generic style tag for brevity in this tool */}
@@ -40,7 +37,7 @@ const StoryConcept: React.FC = () => {
                         .bento-item {
                             position: relative;
                             overflow: hidden;
-                            border-radius: 8px; /* Rounded for modern app feel or 0 for sharp */
+                            //border-radius: 4px; /* Rounded for modern app feel or 0 for sharp */
                             background: #fdfdfd;
                         }
                         .bento-text-card {
@@ -48,6 +45,40 @@ const StoryConcept: React.FC = () => {
                             flex-direction: column;
                             justify-content: center;
                             padding: 2rem;
+                        }
+                        .story-small-card-image {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            transition: transform var(--transition-smooth);
+                        }
+                        .story-small-card:hover .story-small-card-image,
+                        .story-small-card:focus-within .story-small-card-image {
+                            transform: scale(1.06);
+                        }
+                        .story-small-card-overlay {
+                            position: absolute;
+                            inset: 0;
+                            display: flex;
+                            align-items: flex-end;
+                            padding: 20px;
+                            color: white;
+                            background: linear-gradient(
+                                to top,
+                                rgba(0, 0, 0, 0.58) 0%,
+                                rgba(0, 0, 0, 0.28) 40%,
+                                rgba(0, 0, 0, 0) 100%
+                            );
+                        }
+                        .story-small-card-title {
+                            font-size: 1.2rem;
+                            margin-bottom: 0.2rem;
+                            text-shadow: none;
+                        }
+                        .story-small-card-subtitle {
+                            font-size: 0.8rem;
+                            opacity: 0.9;
+                            text-shadow: none;
                         }
                         /* Responsive definitions */
                         .span-ken-img { grid-column: span 12; aspect-ratio: 16/9; }
@@ -69,7 +100,7 @@ const StoryConcept: React.FC = () => {
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
                     >
-                        <img src={kenImg} alt="世界のKEN" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                        <img src={siteContent.storyConcept.kenImageSrc} alt={siteContent.storyConcept.kenImageAlt} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                     </motion.div>
 
                     {/* Main Feature: Ken Text */}
@@ -81,75 +112,69 @@ const StoryConcept: React.FC = () => {
                         transition={{ duration: 0.6, delay: 0.2 }}
                         style={{ backgroundColor: '#F5F5F0' }}
                     >
-                        <h3 style={{ fontSize: '2rem', marginBottom: '1.5rem', fontFamily: 'var(--font-serif)' }}>世界のKEN</h3>
+                        <h3 style={{ fontSize: '2rem', marginBottom: '1.5rem', fontFamily: 'var(--font-serif)' }}>{siteContent.storyConcept.kenHeading}</h3>
                         <p style={{ color: '#444', lineHeight: '1.8', marginBottom: '1.5rem', fontSize: '0.95rem' }}>
-                            設計デザインは2019年建築学科を卒業したての『世界のKEN』。<br />
-                            北極から南極点まで世界150の国々を旅して来た異色の旅行家。<br /><br />
-                            世界で集めた絵画、美術品、それに遊びごころを詰め込んで出来たのが『W.STATION HOTEL』。
+                            {siteContent.storyConcept.kenDescriptionLine1}<br />
+                            {siteContent.storyConcept.kenDescriptionLine2}<br /><br />
+                            {siteContent.storyConcept.kenDescriptionLine3}
                         </p>
                         <Link to="/story" style={{
                             textDecoration: 'underline',
                             fontSize: '0.9rem',
                             letterSpacing: '0.05em'
                         }}>
-                            ストーリーを読む →
+                            {siteContent.storyConcept.readStory}
                         </Link>
                     </motion.div>
 
                     {/* Small Item 1: Stay & Work */}
                     <motion.div
-                        className="bento-item span-small"
+                        className="bento-item span-small story-small-card"
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.3 }}
                     >
-                        <img src={morningImg} alt="Stay & Work" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                        <div style={{
-                            position: 'absolute', bottom: 0, left: 0, width: '100%',
-                            background: 'linear-gradient(to top, rgba(0,0,0,0.7), transparent)',
-                            padding: '20px', color: 'white'
-                        }}>
-                            <h4 style={{ fontSize: '1.2rem', marginBottom: '0.2rem' }}>過ごし方</h4>
-                            <p style={{ fontSize: '0.8rem', opacity: 0.9 }}>サーフィンとワークの融合</p>
+                        <img className="story-small-card-image" src={siteContent.storyConcept.cards.stayWork.imageSrc} alt={siteContent.storyConcept.cards.stayWork.imageAlt} />
+                        <div className="story-small-card-overlay">
+                            <div>
+                                <h4 className="story-small-card-title">{siteContent.storyConcept.cards.stayWork.title}</h4>
+                                <p className="story-small-card-subtitle">{siteContent.storyConcept.cards.stayWork.subtitle}</p>
+                            </div>
                         </div>
                     </motion.div>
 
                     {/* Small Item 2: Eco */}
                     <motion.div
-                        className="bento-item span-small"
+                        className="bento-item span-small story-small-card"
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.4 }}
                     >
-                        <img src={ecoImg} alt="Eco Friendly" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                        <div style={{
-                            position: 'absolute', bottom: 0, left: 0, width: '100%',
-                            background: 'linear-gradient(to top, rgba(0,0,0,0.7), transparent)',
-                            padding: '20px', color: 'white'
-                        }}>
-                            <h4 style={{ fontSize: '1.2rem', marginBottom: '0.2rem' }}>エコホテル</h4>
-                            <p style={{ fontSize: '0.8rem', opacity: 0.9 }}>ZEB認証のサステナブル建築</p>
+                        <img className="story-small-card-image" src={siteContent.storyConcept.cards.eco.imageSrc} alt={siteContent.storyConcept.cards.eco.imageAlt} />
+                        <div className="story-small-card-overlay">
+                            <div>
+                                <h4 className="story-small-card-title">{siteContent.storyConcept.cards.eco.title}</h4>
+                                <p className="story-small-card-subtitle">{siteContent.storyConcept.cards.eco.subtitle}</p>
+                            </div>
                         </div>
                     </motion.div>
 
                     {/* Small Item 3: Space */}
                     <motion.div
-                        className="bento-item span-small"
+                        className="bento-item span-small story-small-card"
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.5 }}
                     >
-                        <img src={spaceImg} alt="Space Design" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                        <div style={{
-                            position: 'absolute', bottom: 0, left: 0, width: '100%',
-                            background: 'linear-gradient(to top, rgba(0,0,0,0.7), transparent)',
-                            padding: '20px', color: 'white'
-                        }}>
-                            <h4 style={{ fontSize: '1.2rem', marginBottom: '0.2rem' }}>空間デザイン</h4>
-                            <p style={{ fontSize: '0.8rem', opacity: 0.9 }}>開放感あふれるガラスの美学</p>
+                        <img className="story-small-card-image" src={siteContent.storyConcept.cards.space.imageSrc} alt={siteContent.storyConcept.cards.space.imageAlt} />
+                        <div className="story-small-card-overlay">
+                            <div>
+                                <h4 className="story-small-card-title">{siteContent.storyConcept.cards.space.title}</h4>
+                                <p className="story-small-card-subtitle">{siteContent.storyConcept.cards.space.subtitle}</p>
+                            </div>
                         </div>
                     </motion.div>
 

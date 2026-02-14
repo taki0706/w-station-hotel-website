@@ -1,76 +1,123 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-
-// Import room images (Assuming they were copied. For now, simple import or dynamic if Vite supports globe, 
-// but to be safe I'll use a placeholder array or import explicitly if I knew names.
-// I copied * from 004booking to src/assets/images/rooms/
-// Names are: 004booking-001-van... etc.
-// I can't easily import them all without specific names. 
-// I'll assume standard naming or just use path placeholders if I can't rename easily.
-// Actually, I can use a glob import in Vite!)
-
-// Use Vite's import.meta.glob to load images from the directory
-const roomImages = import.meta.glob('../../assets/images/rooms/*', { eager: true, as: 'url' });
-const roomImageUrls = Object.values(roomImages);
-
+import { siteContent } from '../../content/siteContent';
 const Rooms: React.FC = () => {
+
     return (
-        <section className="section" style={{ backgroundColor: '#f4f4f4' }}>
+        <section className="section" style={{ backgroundColor: '#f4f4f4', padding: '80px 20px' }}>
             <div className="container">
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'end', marginBottom: '60px' }}>
-                    <motion.h2
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
+                <div style={{ marginBottom: '60px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px', gap: '20px' }}>
+                        <motion.h2
+                            initial={{ opacity: 0, x: -20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            style={{ fontSize: '3rem', fontFamily: 'Cinzel, serif', margin: 0, lineHeight: 1.2, flex: 1, minWidth: 0 }}
+                        >
+                            {siteContent.rooms.heading}
+                        </motion.h2>
+                        <Link to="/rooms" style={{ borderBottom: '1px solid black', fontSize: '0.9rem', letterSpacing: '0.05em', whiteSpace: 'nowrap', display: 'inline-flex', alignItems: 'center', lineHeight: 1.2 }}>
+                            {siteContent.rooms.viewAll}
+                        </Link>
+                    </div>
+                    <motion.p
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        style={{ fontSize: '3rem' }}
+                        transition={{ delay: 0.2 }}
+                        style={{ maxWidth: '800px', fontSize: '1rem', lineHeight: '1.8', color: '#555' }}
                     >
-                        Guest Rooms
-                    </motion.h2>
-                    <Link to="/rooms" style={{ borderBottom: '1px solid black' }}>VIEW ALL ROOMS</Link>
+                        {siteContent.rooms.intro}
+                    </motion.p>
                 </div>
 
-                {/* Horizontal Scroll / Carousel Container */}
-                <div className="rooms-container" style={{
-                    display: 'flex',
-                    overflowX: 'auto',
-                    gap: '30px',
-                    paddingBottom: '40px',
-                    scrollbarWidth: 'none', // Firefox
-                    msOverflowStyle: 'none'  // IE
+                {/* Grid Layout Container */}
+                <div style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+                    gap: '40px',
+                    paddingBottom: '40px'
                 }}>
-                    {roomImageUrls.map((imgUrl, index) => (
+                    {siteContent.rooms.items.map((room, index) => (
                         <motion.div
-                            key={index}
-                            initial={{ opacity: 0, x: 50 }}
-                            whileInView={{ opacity: 1, x: 0 }}
+                            key={room.id}
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
                             style={{
-                                minWidth: '300px',
-                                flex: '0 0 300px',
                                 backgroundColor: 'white',
-                                position: 'relative',
+                                borderRadius: '4px',
+                                boxShadow: '0 10px 30px rgba(0,0,0,0.08)',
+                                overflow: 'hidden',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                transition: 'transform 0.3s ease',
                                 cursor: 'pointer'
                             }}
                         >
-                            <div style={{ height: '200px', overflow: 'hidden' }}>
-                                <img src={imgUrl} alt={`Room ${index + 1}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                            <div style={{ height: '400px', overflow: 'hidden', position: 'relative' }}>
+                                <img
+                                    src={room.imageSrc}
+                                    alt={room.title}
+                                    style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }}
+                                />
                             </div>
-                            <div style={{ padding: '20px' }}>
-                                <h4 style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>Concept Room {index + 1}</h4>
-                                <p style={{ fontSize: '0.9rem', color: '#666', marginBottom: '1rem' }}>
-                                    2 Guests • Double Bed
+                            <div style={{ padding: '25px', flexGrow: 1, display: 'flex', flexDirection: 'column', textAlign: 'left' }}>
+                                <h4 style={{
+                                    fontSize: '1.3rem',
+                                    margin: '0 0 0.5rem 0',
+                                    fontFamily: "'Zen Old Mincho', serif",
+                                    textAlign: 'left',
+                                    letterSpacing: '0',
+                                    fontFeatureSettings: '"palt"',
+                                    marginLeft: '-0.1em'
+                                }}>
+                                    {room.title}
+                                </h4>
+                                <p style={{ fontSize: '0.9rem', color: '#888', marginBottom: '0.5rem', fontFamily: "'Montserrat', sans-serif" }}>
+                                    {room.subtitle}
                                 </p>
-                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                    <span style={{ fontWeight: 600 }}>¥12,000~</span>
-                                    <span style={{ fontSize: '0.8rem', textDecoration: 'underline' }}>Details</span>
+                                <p style={{
+                                    fontSize: '0.95rem',
+                                    color: '#555',
+                                    marginBottom: '1.5rem',
+                                    lineHeight: '1.8',
+                                    flexGrow: 1,
+                                    fontFamily: "'Zen Old Mincho', serif",
+                                    fontFeatureSettings: '"palt"',
+                                    marginLeft: '-0.1em'
+                                }}>
+                                    {room.description}
+                                </p>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 'auto' }}>
+                                    <span style={{ fontWeight: 600, fontSize: '1.1rem' }}>{room.price}</span>
+                                    <span style={{
+                                        fontSize: '0.85rem',
+                                        padding: '8px 20px',
+                                        border: '1px solid #333',
+                                        borderRadius: '30px',
+                                        transition: 'all 0.3s ease',
+                                        backgroundColor: 'transparent'
+                                    }}
+                                        className="details-btn"
+                                    >
+                                        {room.details} &gt;
+                                    </span>
                                 </div>
                             </div>
                         </motion.div>
                     ))}
                 </div>
             </div>
+            {/* Add simple hover style for the button in a style tag since we are using inline styles mostly */}
+            <style>{`
+                .details-btn:hover {
+                    background-color: #333;
+                    color: white;
+                }
+            `}</style>
         </section>
     );
 };

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
+import { siteContent } from '../../content/siteContent';
 
 const Header: React.FC = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -43,15 +44,15 @@ const Header: React.FC = () => {
     return (
         <header style={headerStyle}>
             <div className="logo" style={{ fontSize: '1.5rem', fontWeight: 600, fontFamily: 'var(--font-serif)' }}>
-                <Link to="/">W.STATION</Link>
+                <Link to="/">{siteContent.brand.short}</Link>
             </div>
 
             <nav className="desktop-nav" style={{ display: 'flex', alignItems: 'center' }}>
                 <div style={{ display: 'flex', gap: '2rem', marginRight: '3rem' }} className="hidden-mobile">
-                    <Link to="/story" style={navLinkStyle}>Story & Concept</Link>
-                    <Link to="/rooms" style={navLinkStyle}>Rooms</Link>
-                    <Link to="/feature" style={navLinkStyle}>Feature</Link>
-                    <Link to="/access" style={navLinkStyle}>Access</Link>
+                    <Link to="/story" style={navLinkStyle}>{siteContent.navigation.storyConcept}</Link>
+                    <Link to="/rooms" style={navLinkStyle}>{siteContent.navigation.rooms}</Link>
+                    <Link to="/feature" style={navLinkStyle}>{siteContent.navigation.feature}</Link>
+                    <Link to="/access" style={navLinkStyle}>{siteContent.navigation.access}</Link>
                 </div>
 
                 <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
@@ -64,7 +65,7 @@ const Header: React.FC = () => {
                         fontFamily: 'var(--font-sans)',
                         cursor: 'pointer'
                     }}>
-                        JP / EN
+                        {siteContent.navigation.language}
                     </button>
 
                     <Link to="/booking" style={{
@@ -76,7 +77,7 @@ const Header: React.FC = () => {
                         fontWeight: 600,
                         letterSpacing: '0.05em'
                     }}>
-                        BOOK NOW
+                        {siteContent.navigation.booking}
                     </Link>
 
                     <div className="mobile-menu-toggle" onClick={() => setIsMenuOpen(!isMenuOpen)} style={{ cursor: 'pointer', marginLeft: '20px', display: 'none' }}>
