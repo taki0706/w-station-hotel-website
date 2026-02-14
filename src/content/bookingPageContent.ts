@@ -148,15 +148,15 @@ const jpBookingPageContent = {
     items: [
       {
         question: 'チェックイン・チェックアウトの時間は？',
-        answer: 'チェックイン15:00〜、チェックアウト〜10:00です。アーリーチェックイン・レイトチェックアウトをご希望の場合は、事前にお問い合わせください。'
+        answer: ''
       },
       {
         question: '駐車場はありますか？',
-        answer: 'ホテル専用の無料駐車場を8台分ご用意しております。予約制ではございませんので、お早めのご到着をおすすめいたします。'
+        answer: ''
       },
       {
         question: 'キャンセルポリシーは？',
-        answer: '予約サイトのキャンセルポリシーに準じます。詳細は予約時にご確認ください。'
+        answer: ''
       },
       {
         question: '朝食は付いていますか？',
@@ -164,11 +164,11 @@ const jpBookingPageContent = {
       },
       {
         question: 'Wi-Fiは利用できますか？',
-        answer: '全室・共有スペースで高速Wi-Fiを無料でご利用いただけます。リモートワークにも最適です。'
+        answer: ''
       },
       {
         question: 'アメニティは何がありますか？',
-        answer: 'エコの観点から、使い捨てアメニティ（歯磨きセット、カミソリなど）は備えておりません。ご自身でお持ちください。タオル、シャンプー、ボディソープはご用意しております。'
+        answer: 'エコの観点から、使い捨てアメニティ（歯磨きセット、カミソリなど）は備えておりません。ご自身でお持ちください。'
       }
     ]
   },
@@ -350,15 +350,15 @@ const enBookingPageContent: BookingPageContent = {
     items: [
       {
         question: 'What are the check-in and check-out times?',
-        answer: 'Check-in from 15:00, check-out until 10:00. For early check-in or late check-out, please contact us in advance.'
+        answer: ''
       },
       {
         question: 'Is parking available?',
-        answer: 'We offer 8 free parking spaces exclusively for hotel guests. Parking is not by reservation, so early arrival is recommended.'
+        answer: ''
       },
       {
         question: 'What is the cancellation policy?',
-        answer: 'The cancellation policy of the booking site applies. Please check the details when making a reservation.'
+        answer: ''
       },
       {
         question: 'Is breakfast included?',
@@ -366,11 +366,11 @@ const enBookingPageContent: BookingPageContent = {
       },
       {
         question: 'Is Wi-Fi available?',
-        answer: 'High-speed Wi-Fi is available for free in all rooms and shared spaces. Ideal for remote work.'
+        answer: ''
       },
       {
         question: 'What amenities are available?',
-        answer: 'From an eco perspective, disposable amenities (toothbrush set, razor, etc.) are not provided. Please bring your own. Towels, shampoo, and body soap are provided.'
+        answer: 'From an eco perspective, disposable amenities (toothbrush set, razor, etc.) are not provided. Please bring your own.'
       }
     ]
   },
