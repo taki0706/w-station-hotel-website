@@ -77,16 +77,7 @@ const StayRules: React.FC<StayRulesProps> = ({ content }) => {
                                 backgroundColor: '#f9f9f9',
                                 padding: '40px 30px',
                                 borderRadius: '8px',
-                                textAlign: 'center',
-                                transition: 'all 0.3s ease'
-                            }}
-                            onMouseEnter={(e) => {
-                                e.currentTarget.style.transform = 'translateY(-5px)';
-                                e.currentTarget.style.boxShadow = '0 10px 30px rgba(0,0,0,0.1)';
-                            }}
-                            onMouseLeave={(e) => {
-                                e.currentTarget.style.transform = 'translateY(0)';
-                                e.currentTarget.style.boxShadow = 'none';
+                                textAlign: 'center'
                             }}
                         >
 

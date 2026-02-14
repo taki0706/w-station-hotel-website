@@ -187,7 +187,7 @@ const RoomsList: React.FC<RoomsListProps> = ({ content }) => {
                                     backgroundColor: 'white',
                                     borderRadius: '8px',
                                     overflow: 'hidden',
-                                    boxShadow: '0 10px 40px rgba(0,0,0,0.08)',
+                                    boxShadow: '0 10px 30px rgba(0,0,0,0.08)',
                                     textDecoration: 'none',
                                     color: 'inherit',
                                     transition: 'all 0.4s ease',
@@ -200,7 +200,7 @@ const RoomsList: React.FC<RoomsListProps> = ({ content }) => {
                                 }}
                                 onMouseLeave={(e) => {
                                     e.currentTarget.style.transform = 'translateY(0)';
-                                    e.currentTarget.style.boxShadow = '0 10px 40px rgba(0,0,0,0.08)';
+                                    e.currentTarget.style.boxShadow = '0 10px 30px rgba(0,0,0,0.08)';
                                 }}
                             >
                                 {/* Room Image */}
@@ -226,24 +226,6 @@ const RoomsList: React.FC<RoomsListProps> = ({ content }) => {
                                             e.currentTarget.style.transform = 'scale(1)';
                                         }}
                                     />
-                                    {/* Price Badge */}
-                                    <div style={{
-                                        position: 'absolute',
-                                        top: '20px',
-                                        right: '20px',
-                                        backgroundColor: 'rgba(255,255,255,0.95)',
-                                        padding: '12px 20px',
-                                        borderRadius: '30px',
-                                        backdropFilter: 'blur(10px)'
-                                    }}>
-                                        <span style={{
-                                            fontSize: '1.2rem',
-                                            fontWeight: 600,
-                                            color: '#333'
-                                        }}>
-                                            {room.priceFrom}〜
-                                        </span>
-                                    </div>
                                 </div>
 
                                 {/* Room Content */}
@@ -280,7 +262,8 @@ const RoomsList: React.FC<RoomsListProps> = ({ content }) => {
                                         marginBottom: '2rem',
                                         fontFamily: "'Zen Old Mincho', serif",
                                         fontFeatureSettings: '"palt"',
-                                        marginLeft: '-0.1em'
+                                        marginLeft: '-0.1em',
+                                        flexGrow: 1
                                     }}>
                                         {room.description}
                                     </p>
@@ -308,34 +291,47 @@ const RoomsList: React.FC<RoomsListProps> = ({ content }) => {
                                         ))}
                                     </div>
 
-                                    {/* Booking Button */}
+                                    {/* Footer: Price & Button */}
                                     <div style={{
-                                        display: 'inline-flex',
+                                        display: 'flex',
+                                        justifyContent: 'space-between',
                                         alignItems: 'center',
-                                        fontSize: '1rem',
-                                        fontWeight: 600,
-                                        color: '#333',
-                                        letterSpacing: '0.05em'
+                                        marginTop: 'auto'
                                     }}>
-                                        {content.cta.bookButton}
-                                        <svg
-                                            style={{
-                                                width: '20px',
-                                                height: '20px',
-                                                marginLeft: '8px',
-                                                transition: 'transform 0.3s ease'
+                                        <span style={{
+                                            fontWeight: 600,
+                                            fontSize: '1.3rem',
+                                            fontFamily: "'Montserrat', sans-serif",
+                                            color: '#333'
+                                        }}>
+                                            {room.priceFrom}〜
+                                        </span>
+
+                                        <div style={{
+                                            display: 'inline-flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            fontSize: '0.9rem',
+                                            padding: '10px 24px',
+                                            border: '1px solid #333',
+                                            borderRadius: '30px',
+                                            transition: 'all 0.3s ease',
+                                            backgroundColor: 'transparent',
+                                            color: '#333',
+                                            fontWeight: 500,
+                                            letterSpacing: '0.05em'
+                                        }}
+                                            onMouseEnter={(e) => {
+                                                e.currentTarget.style.backgroundColor = '#333';
+                                                e.currentTarget.style.color = 'white';
                                             }}
-                                            fill="none"
-                                            stroke="currentColor"
-                                            viewBox="0 0 24 24"
+                                            onMouseLeave={(e) => {
+                                                e.currentTarget.style.backgroundColor = 'transparent';
+                                                e.currentTarget.style.color = '#333';
+                                            }}
                                         >
-                                            <path
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                strokeWidth={2}
-                                                d="M17 8l4 4m0 0l-4 4m4-4H3"
-                                            />
-                                        </svg>
+                                            {content.cta.bookButton}
+                                        </div>
                                     </div>
                                 </div>
                             </motion.a>
