@@ -10,7 +10,7 @@ const Footer: React.FC<FooterProps> = ({ content }) => {
     const footerStyle: React.CSSProperties = {
         backgroundColor: '#111',
         color: '#fff',
-        padding: '80px 40px 40px',
+        padding: 'var(--footer-padding, 80px 40px 40px)',
         fontFamily: 'var(--font-sans)',
     };
 
@@ -24,6 +24,13 @@ const Footer: React.FC<FooterProps> = ({ content }) => {
 
     return (
         <footer style={footerStyle}>
+            <style>{`
+                @media (max-width: 768px) {
+                    footer {
+                        --footer-padding: 40px 20px 30px !important;
+                    }
+                }
+            `}</style>
             <div className="container" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '40px', marginBottom: '60px' }}>
                 <div>
                     <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.8rem', marginBottom: '1.5rem' }}>{content.brand.full}</h3>

@@ -40,7 +40,17 @@ const Hero: React.FC<HeroProps> = ({ content }) => {
                 }} />
             </div>
 
-            <div className="container" style={{ position: 'relative', zIndex: 1, color: 'white', textAlign: 'center' }}>
+            <style>{`
+                @media (max-width: 768px) {
+                    .hero-title-top {
+                        font-size: 3rem !important;
+                    }
+                    .hero-container {
+                        padding: 0 20px;
+                    }
+                }
+            `}</style>
+            <div className="container hero-container" style={{ position: 'relative', zIndex: 1, color: 'white', textAlign: 'center' }}>
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -55,7 +65,7 @@ const Hero: React.FC<HeroProps> = ({ content }) => {
                     }}>
                         {content.hero.tagline}
                     </h2>
-                    <h1 style={{
+                    <h1 className="hero-title-top" style={{
                         fontSize: 'clamp(3rem, 8vw, 6rem)',
                         marginBottom: '2rem',
                         lineHeight: 1.1,

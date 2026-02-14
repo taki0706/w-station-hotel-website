@@ -27,74 +27,155 @@ const StoryConcept: React.FC<StoryConceptProps> = ({ content }) => {
                     </p>
                 </div>
 
-                <div className="bento-grid" style={{
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(12, 1fr)',
-                    gap: '5px',
-                    padding: '0 20px'
-                }}>
-                    {/* Inline styles for responsive grid are handled via class or we can use generic style tag for brevity in this tool */}
-                    <style>{`
+                <style>{`
+                    .bento-grid {
+                        display: grid;
+                        grid-template-columns: repeat(12, 1fr);
+                        gap: 5px;
+                        grid-auto-rows: minmax(200px, auto);
+                        padding: 0 20px;
+                    }
+                    .bento-item {
+                        position: relative;
+                        overflow: hidden;
+                        background: #fdfdfd;
+                    }
+                    .bento-text-card {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        padding: 2rem;
+                    }
+                    .story-small-card-image {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        transition: transform var(--transition-smooth);
+                    }
+                    .story-small-card:hover .story-small-card-image,
+                    .story-small-card:focus-within .story-small-card-image {
+                        transform: scale(1.06);
+                    }
+                    .story-small-card-overlay {
+                        position: absolute;
+                        inset: 0;
+                        display: flex;
+                        align-items: flex-end;
+                        padding: 20px;
+                        color: white;
+                        background: linear-gradient(
+                            to top,
+                            rgba(0, 0, 0, 0.58) 0%,
+                            rgba(0, 0, 0, 0.28) 40%,
+                            rgba(0, 0, 0, 0) 100%
+                        );
+                    }
+                    .story-small-card-title {
+                        font-size: 1.2rem;
+                        margin-bottom: 0.2rem;
+                        text-shadow: none;
+                    }
+                    .story-small-card-subtitle {
+                        font-size: 0.8rem;
+                        opacity: 0.9;
+                        text-shadow: none;
+                    }
+
+                    /* Default (Mobile) Styles */
+                    .span-ken-img { 
+                        grid-column: span 12; 
+                        aspect-ratio: auto; /* Natural height */
+                        height: auto;
+                        min-height: 250px;
+                    }
+                    .span-ken-img img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: contain; /* Ensure full image is seen */
+                        background-color: #f0f0f0; /* Fallback bg if aspect ratio leaves gaps */
+                    }
+
+                    .span-ken-text { 
+                        grid-column: span 12; 
+                    }
+                    .ken-text-p {
+                        font-size: 0.85rem; /* Smaller text on mobile */
+                    }
+                    
+                    /* Mobile Horizontal Layout for Small Cards (Side-by-Side) */
+                    .small-cards-container {
+                        grid-column: span 12;
+                        display: grid;
+                        grid-template-columns: repeat(3, 1fr);
+                        gap: 5px;
+                        margin-top: 10px;
+                    }
+
+                    .story-small-card { 
+                        aspect-ratio: 1/1; /* Square or vertical for tight fit */
+                        width: 100%;
+                    }
+
+                    .story-small-card-subtitle {
+                        display: none; /* Hide subtitle on mobile */
+                    }
+                    
+                    .story-small-card-overlay {
+                         padding: 10px; /* Smaller padding on mobile */
+                    }
+                    
+                    .story-small-card-title {
+                        font-size: 0.9rem; /* Smaller title on mobile */
+                    }
+
+                    @media (min-width: 768px) {
                         .bento-grid {
-                            grid-auto-rows: minmax(200px, auto);
+                            padding: 0 20px;
                         }
-                        .bento-item {
-                            position: relative;
-                            overflow: hidden;
-                            //border-radius: 4px; /* Rounded for modern app feel or 0 for sharp */
-                            background: #fdfdfd;
+                        .span-ken-img { 
+                            grid-column: span 8; 
+                            grid-row: span 2; 
+                            aspect-ratio: auto; 
+                            height: 100%; /* Fill grid cell */
                         }
-                        .bento-text-card {
-                            display: flex;
-                            flex-direction: column;
-                            justify-content: center;
-                            padding: 2rem;
+                        .span-ken-img img {
+                            object-fit: cover; /* Cover on desktop */
                         }
-                        .story-small-card-image {
-                            width: 100%;
-                            height: 100%;
-                            object-fit: cover;
-                            transition: transform var(--transition-smooth);
+
+                        .span-ken-text { 
+                            grid-column: span 4; 
+                            grid-row: span 2; 
                         }
-                        .story-small-card:hover .story-small-card-image,
-                        .story-small-card:focus-within .story-small-card-image {
-                            transform: scale(1.06);
+                        .ken-text-p {
+                            font-size: 0.95rem; /* Standard text size */
+                        }
+
+                        /* Disable Mobile Grid, return to Bento Grid positions */
+                        .small-cards-container {
+                            display: contents; /* Remove container styling, let children be grid items */
+                            margin: 0;
+                            padding: 0;
+                        }
+                        .story-small-card { 
+                            grid-column: span 4; 
+                            grid-row: span 1; 
+                            aspect-ratio: auto; 
+                            min-width: auto;
+                            flex: none;
+                        }
+                        .story-small-card-subtitle {
+                            display: block; /* Show subtitle on desktop */
                         }
                         .story-small-card-overlay {
-                            position: absolute;
-                            inset: 0;
-                            display: flex;
-                            align-items: flex-end;
-                            padding: 20px;
-                            color: white;
-                            background: linear-gradient(
-                                to top,
-                                rgba(0, 0, 0, 0.58) 0%,
-                                rgba(0, 0, 0, 0.28) 40%,
-                                rgba(0, 0, 0, 0) 100%
-                            );
+                             padding: 20px;
                         }
                         .story-small-card-title {
                             font-size: 1.2rem;
-                            margin-bottom: 0.2rem;
-                            text-shadow: none;
                         }
-                        .story-small-card-subtitle {
-                            font-size: 0.8rem;
-                            opacity: 0.9;
-                            text-shadow: none;
-                        }
-                        /* Responsive definitions */
-                        .span-ken-img { grid-column: span 12; aspect-ratio: 16/9; }
-                        .span-ken-text { grid-column: span 12; }
-                        .span-small { grid-column: span 12; aspect-ratio: 4/3; }
+                    }
+                `}</style>
 
-                        @media (min-width: 768px) {
-                            .span-ken-img { grid-column: span 8; grid-row: span 2; aspect-ratio: auto; }
-                            .span-ken-text { grid-column: span 4; grid-row: span 2; }
-                            .span-small { grid-column: span 4; grid-row: span 1; aspect-ratio: auto; }
-                        }
-                    `}</style>
+                <div className="bento-grid">
 
                     {/* Main Feature: Ken Image */}
                     <motion.div
@@ -104,7 +185,7 @@ const StoryConcept: React.FC<StoryConceptProps> = ({ content }) => {
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
                     >
-                        <img src={content.storyConcept.kenImageSrc} alt={content.storyConcept.kenImageAlt} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                        <img src={content.storyConcept.kenImageSrc} alt={content.storyConcept.kenImageAlt} />
                     </motion.div>
 
                     {/* Main Feature: Ken Text */}
@@ -117,7 +198,7 @@ const StoryConcept: React.FC<StoryConceptProps> = ({ content }) => {
                         style={{ backgroundColor: '#F5F5F0' }}
                     >
                         <h3 style={{ fontSize: '2rem', marginBottom: '1.5rem', fontFamily: 'var(--font-serif)' }}>{content.storyConcept.kenHeading}</h3>
-                        <p style={{ color: '#444', lineHeight: '1.8', marginBottom: '1.5rem', fontSize: '0.95rem' }}>
+                        <p className="ken-text-p" style={{ color: '#444', lineHeight: '1.8', marginBottom: '1.5rem' }}>
                             {content.storyConcept.kenDescriptionLine1}<br />
                             {content.storyConcept.kenDescriptionLine2}<br /><br />
                             {content.storyConcept.kenDescriptionLine3}
@@ -131,56 +212,59 @@ const StoryConcept: React.FC<StoryConceptProps> = ({ content }) => {
                         </Link>
                     </motion.div>
 
-                    {/* Small Item 1: Stay & Work */}
-                    <motion.div
-                        className="bento-item span-small story-small-card"
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.3 }}
-                    >
-                        <img className="story-small-card-image" src={content.storyConcept.cards.stayWork.imageSrc} alt={content.storyConcept.cards.stayWork.imageAlt} />
-                        <div className="story-small-card-overlay">
-                            <div>
-                                <h4 className="story-small-card-title">{content.storyConcept.cards.stayWork.title}</h4>
-                                <p className="story-small-card-subtitle">{content.storyConcept.cards.stayWork.subtitle}</p>
+                    {/* Wrapper for small cards to handle mobile horizontal scroll */}
+                    <div className="small-cards-container">
+                        {/* Small Item 1: Stay & Work */}
+                        <motion.div
+                            className="bento-item story-small-card"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.3 }}
+                        >
+                            <img className="story-small-card-image" src={content.storyConcept.cards.stayWork.imageSrc} alt={content.storyConcept.cards.stayWork.imageAlt} />
+                            <div className="story-small-card-overlay">
+                                <div>
+                                    <h4 className="story-small-card-title">{content.storyConcept.cards.stayWork.title}</h4>
+                                    <p className="story-small-card-subtitle">{content.storyConcept.cards.stayWork.subtitle}</p>
+                                </div>
                             </div>
-                        </div>
-                    </motion.div>
+                        </motion.div>
 
-                    {/* Small Item 2: Eco */}
-                    <motion.div
-                        className="bento-item span-small story-small-card"
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.4 }}
-                    >
-                        <img className="story-small-card-image" src={content.storyConcept.cards.eco.imageSrc} alt={content.storyConcept.cards.eco.imageAlt} />
-                        <div className="story-small-card-overlay">
-                            <div>
-                                <h4 className="story-small-card-title">{content.storyConcept.cards.eco.title}</h4>
-                                <p className="story-small-card-subtitle">{content.storyConcept.cards.eco.subtitle}</p>
+                        {/* Small Item 2: Eco */}
+                        <motion.div
+                            className="bento-item story-small-card"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.4 }}
+                        >
+                            <img className="story-small-card-image" src={content.storyConcept.cards.eco.imageSrc} alt={content.storyConcept.cards.eco.imageAlt} />
+                            <div className="story-small-card-overlay">
+                                <div>
+                                    <h4 className="story-small-card-title">{content.storyConcept.cards.eco.title}</h4>
+                                    <p className="story-small-card-subtitle">{content.storyConcept.cards.eco.subtitle}</p>
+                                </div>
                             </div>
-                        </div>
-                    </motion.div>
+                        </motion.div>
 
-                    {/* Small Item 3: Space */}
-                    <motion.div
-                        className="bento-item span-small story-small-card"
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.5 }}
-                    >
-                        <img className="story-small-card-image" src={content.storyConcept.cards.space.imageSrc} alt={content.storyConcept.cards.space.imageAlt} />
-                        <div className="story-small-card-overlay">
-                            <div>
-                                <h4 className="story-small-card-title">{content.storyConcept.cards.space.title}</h4>
-                                <p className="story-small-card-subtitle">{content.storyConcept.cards.space.subtitle}</p>
+                        {/* Small Item 3: Space */}
+                        <motion.div
+                            className="bento-item story-small-card"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.5 }}
+                        >
+                            <img className="story-small-card-image" src={content.storyConcept.cards.space.imageSrc} alt={content.storyConcept.cards.space.imageAlt} />
+                            <div className="story-small-card-overlay">
+                                <div>
+                                    <h4 className="story-small-card-title">{content.storyConcept.cards.space.title}</h4>
+                                    <p className="story-small-card-subtitle">{content.storyConcept.cards.space.subtitle}</p>
+                                </div>
                             </div>
-                        </div>
-                    </motion.div>
+                        </motion.div>
+                    </div>
 
                 </div>
             </div>

@@ -12,12 +12,28 @@ const Rooms: React.FC<RoomsProps> = ({ content }) => {
     return (
         <section className="section" style={{ backgroundColor: '#f4f4f4', padding: '80px 20px' }}>
             <div className="container">
+                <style>{`
+                    @media (max-width: 768px) {
+                        .rooms-header {
+                            flex-direction: column;
+                            align-items: flex-start !important;
+                            gap: 10px !important;
+                        }
+                        .rooms-title {
+                            font-size: 2.2rem !important;
+                        }
+                        .rooms-intro {
+                            font-size: 0.95rem !important;
+                        }
+                    }
+                `}</style>
                 <div style={{ marginBottom: '60px' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px', gap: '20px' }}>
+                    <div className="rooms-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px', gap: '20px' }}>
                         <motion.h2
                             initial={{ opacity: 0, x: -20 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
+                            className="rooms-title"
                             style={{ fontSize: '3rem', fontFamily: 'Cinzel, serif', margin: 0, lineHeight: 1.2, flex: 1, minWidth: 0 }}
                         >
                             {content.rooms.heading}
@@ -27,6 +43,7 @@ const Rooms: React.FC<RoomsProps> = ({ content }) => {
                         </Link>
                     </div>
                     <motion.p
+                        className="rooms-intro"
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
@@ -37,16 +54,45 @@ const Rooms: React.FC<RoomsProps> = ({ content }) => {
                     </motion.p>
                 </div>
 
-                {/* Grid Layout Container */}
-                <div style={{
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-                    gap: '40px',
-                    paddingBottom: '40px'
-                }}>
+                <style>{`
+                    .rooms-grid {
+                        display: grid;
+                        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                        gap: 40px;
+                        padding-bottom: 40px;
+                    }
+
+                    @media (max-width: 768px) {
+                        .rooms-grid {
+                            display: flex;
+                            grid-template-columns: none;
+                            gap: 32px;
+                            overflow-x: auto;
+                            scroll-snap-type: x mandatory;
+                            padding-bottom: 40px;
+                            margin: 0 -20px;
+                            /* Dynamic padding to center the first card */
+                            /* 50% of container - 50% of card width = Start position centering */
+                            padding-left: calc(50% - min(75vw, 320px) / 2);
+                            padding-right: calc(50% - min(75vw, 320px) / 2);
+                            scrollbar-width: none;
+                        }
+                        .rooms-grid::-webkit-scrollbar {
+                            display: none;
+                        }
+                        .room-card {
+                            flex: 0 0 75vw;
+                            max-width: 320px;
+                            scroll-snap-align: center;
+                        }
+                    }
+                `}</style>
+                {/* Layout Container */}
+                <div className="rooms-grid">
                     {content.rooms.items.map((room, index) => (
                         <motion.div
                             key={room.id}
+                            className="room-card"
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
@@ -62,7 +108,7 @@ const Rooms: React.FC<RoomsProps> = ({ content }) => {
                                 cursor: 'pointer'
                             }}
                         >
-                            <div style={{ height: '400px', overflow: 'hidden', position: 'relative' }}>
+                            <div style={{ height: '250px', overflow: 'hidden', position: 'relative' }}>
                                 <img
                                     src={room.imageSrc}
                                     alt={room.title}

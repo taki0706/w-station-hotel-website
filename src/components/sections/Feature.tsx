@@ -71,21 +71,37 @@ const Feature: React.FC<FeatureProps> = ({ content }) => {
                     <p>{content.feature.description}</p>
                 </div>
 
-                <div className="feature-grid" style={{
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(12, 1fr)',
-                    gap: '5px',
-                    gridAutoRows: 'minmax(200px, auto)'
-                }}>
+                <style>{`
+                    .feature-grid {
+                        display: grid;
+                        grid-template-columns: repeat(12, 1fr);
+                        gap: 5px;
+                        grid-auto-rows: minmax(200px, auto);
+                    }
+                    .feature-item-bar { grid-column: span 12; grid-row: span 2; min-height: 300px; }
+                    .feature-item-lighting { grid-column: span 12; grid-row: span 1; min-height: 200px; }
+                    .feature-item-dining { grid-column: span 12; grid-row: span 1; min-height: 200px; }
+                    .feature-item-sento { grid-column: span 12; grid-row: span 2; min-height: 300px; }
+                    .feature-item-art { grid-column: span 12; grid-row: span 2; min-height: 300px; }
+                    
+                    @media (min-width: 768px) {
+                        .feature-item-bar { grid-column: span 8; grid-row: span 2; min-height: 400px; }
+                        .feature-item-lighting { grid-column: span 4; grid-row: span 1; min-height: 200px; }
+                        .feature-item-dining { grid-column: span 4; grid-row: span 1; min-height: 200px; }
+                        .feature-item-sento { grid-column: span 6; grid-row: span 2; min-height: 300px; }
+                        .feature-item-art { grid-column: span 6; grid-row: span 2; min-height: 300px; }
+                    }
+                `}</style>
+                <div className="feature-grid">
                     {featureCards.map((card) => (
                         <motion.div
                             key={card.key}
-                            className="feature-item feature-card"
+                            className={`feature-item feature-card feature-item-${card.key}`}
                             initial={{ opacity: 0, scale: 0.95 }}
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
                             transition={card.delay > 0 ? { delay: card.delay } : undefined}
-                            style={{ gridColumn: card.gridColumn, gridRow: card.gridRow, position: 'relative', minHeight: card.minHeight }}
+                            style={{ position: 'relative' }}
                         >
                             <img
                                 className="feature-card-image"
