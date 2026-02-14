@@ -1,13 +1,17 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { siteContent } from '../../content/siteContent';
+import { type SiteContent } from '../../content/siteContent';
 
-const Feature: React.FC = () => {
+type FeatureProps = {
+    content: SiteContent;
+};
+
+const Feature: React.FC<FeatureProps> = ({ content }) => {
     const featureCards = [
         {
             key: 'bar',
-            item: siteContent.feature.items.bar,
+            item: content.feature.items.bar,
             gridColumn: 'span 8',
             gridRow: 'span 2',
             minHeight: '400px',
@@ -16,7 +20,7 @@ const Feature: React.FC = () => {
         },
         {
             key: 'lighting',
-            item: siteContent.feature.items.lighting,
+            item: content.feature.items.lighting,
             gridColumn: 'span 4',
             gridRow: 'span 1',
             minHeight: '200px',
@@ -25,7 +29,7 @@ const Feature: React.FC = () => {
         },
         {
             key: 'dining',
-            item: siteContent.feature.items.dining,
+            item: content.feature.items.dining,
             gridColumn: 'span 4',
             gridRow: 'span 1',
             minHeight: '200px',
@@ -34,7 +38,7 @@ const Feature: React.FC = () => {
         },
         {
             key: 'sento',
-            item: siteContent.feature.items.sento,
+            item: content.feature.items.sento,
             gridColumn: 'span 6',
             gridRow: 'span 2',
             minHeight: '300px',
@@ -43,7 +47,7 @@ const Feature: React.FC = () => {
         },
         {
             key: 'art',
-            item: siteContent.feature.items.art,
+            item: content.feature.items.art,
             gridColumn: 'span 6',
             gridRow: 'span 2',
             minHeight: '300px',
@@ -62,9 +66,9 @@ const Feature: React.FC = () => {
                         viewport={{ once: true }}
                         style={{ fontSize: '3rem' }}
                     >
-                        {siteContent.feature.heading}
+                        {content.feature.heading}
                     </motion.h2>
-                    <p>{siteContent.feature.description}</p>
+                    <p>{content.feature.description}</p>
                 </div>
 
                 <div className="feature-grid" style={{
@@ -107,7 +111,7 @@ const Feature: React.FC = () => {
                         letterSpacing: '0.1em',
                         color: 'black'
                     }}>
-                        {siteContent.feature.viewAll}
+                        {content.feature.viewAll}
                     </Link>
                 </div>
             </div>

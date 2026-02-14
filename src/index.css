@@ -150,3 +150,49 @@ img {
 .feature-card:focus-within .feature-card-image {
     transform: scale(1.06);
 }
+
+.mobile-menu-toggle {
+    line-height: 0;
+}
+
+@media (max-width: 768px) {
+    .site-header {
+        padding: 16px 20px !important;
+    }
+
+    .site-header-title {
+        font-size: 1.15rem !important;
+    }
+
+    .site-header-links {
+        display: none !important;
+    }
+
+    .site-header-actions {
+        gap: 0.5rem !important;
+    }
+
+    .site-header-language {
+        display: flex !important;
+    }
+
+    .site-header-language button {
+        padding: 6px 8px !important;
+        font-size: 0.7rem;
+        letter-spacing: 0.04em !important;
+    }
+
+    .site-header-cta {
+        padding: 9px 12px !important;
+        font-size: 0.7rem;
+        letter-spacing: 0.04em !important;
+    }
+
+    .mobile-menu-toggle {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        margin-left: 0 !important;
+        padding: 0;
+    }
+}

@@ -1,8 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { siteContent } from '../../content/siteContent';
-const Rooms: React.FC = () => {
+import { type SiteContent } from '../../content/siteContent';
+
+type RoomsProps = {
+    content: SiteContent;
+};
+
+const Rooms: React.FC<RoomsProps> = ({ content }) => {
 
     return (
         <section className="section" style={{ backgroundColor: '#f4f4f4', padding: '80px 20px' }}>
@@ -15,10 +20,10 @@ const Rooms: React.FC = () => {
                             viewport={{ once: true }}
                             style={{ fontSize: '3rem', fontFamily: 'Cinzel, serif', margin: 0, lineHeight: 1.2, flex: 1, minWidth: 0 }}
                         >
-                            {siteContent.rooms.heading}
+                            {content.rooms.heading}
                         </motion.h2>
                         <Link to="/rooms" style={{ borderBottom: '1px solid black', fontSize: '0.9rem', letterSpacing: '0.05em', whiteSpace: 'nowrap', display: 'inline-flex', alignItems: 'center', lineHeight: 1.2 }}>
-                            {siteContent.rooms.viewAll}
+                            {content.rooms.viewAll}
                         </Link>
                     </div>
                     <motion.p
@@ -28,7 +33,7 @@ const Rooms: React.FC = () => {
                         transition={{ delay: 0.2 }}
                         style={{ maxWidth: '800px', fontSize: '1rem', lineHeight: '1.8', color: '#555' }}
                     >
-                        {siteContent.rooms.intro}
+                        {content.rooms.intro}
                     </motion.p>
                 </div>
 
@@ -39,7 +44,7 @@ const Rooms: React.FC = () => {
                     gap: '40px',
                     paddingBottom: '40px'
                 }}>
-                    {siteContent.rooms.items.map((room, index) => (
+                    {content.rooms.items.map((room, index) => (
                         <motion.div
                             key={room.id}
                             initial={{ opacity: 0, y: 30 }}

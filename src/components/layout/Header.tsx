@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
-import { siteContent } from '../../content/siteContent';
+import { type Locale, type SiteContent } from '../../content/siteContent';
 
-const Header: React.FC = () => {
+type HeaderProps = {
+    content: SiteContent;
+    locale: Locale;
+    onLocaleChange: (locale: Locale) => void;
+};
+
+const Header: React.FC<HeaderProps> = ({ content, locale, onLocaleChange }) => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -41,34 +47,64 @@ const Header: React.FC = () => {
         position: 'relative' as const,
     };
 
+    const languageButtonStyle: React.CSSProperties = {
+        background: 'transparent',
+        color: 'inherit',
+        padding: '8px 12px',
+        border: 'none',
+        fontFamily: 'var(--font-sans)',
+        letterSpacing: '0.06em',
+        cursor: 'pointer'
+    };
+
+    const languageWrapperStyle: React.CSSProperties = {
+        display: 'flex',
+        border: `1px solid ${isScrolled ? 'var(--color-text)' : 'white'}`
+    };
+
     return (
-        <header style={headerStyle}>
-            <div className="logo" style={{ fontSize: '1.5rem', fontWeight: 600, fontFamily: 'var(--font-serif)' }}>
-                <Link to="/">{siteContent.brand.short}</Link>
+        <header className="site-header" style={headerStyle}>
+            <div className="site-header-title" style={{ fontSize: '1.5rem', fontWeight: 600, fontFamily: 'var(--font-serif)' }}>
+                <Link to="/">{content.brand.short}</Link>
             </div>
 
             <nav className="desktop-nav" style={{ display: 'flex', alignItems: 'center' }}>
-                <div style={{ display: 'flex', gap: '2rem', marginRight: '3rem' }} className="hidden-mobile">
-                    <Link to="/story" style={navLinkStyle}>{siteContent.navigation.storyConcept}</Link>
-                    <Link to="/rooms" style={navLinkStyle}>{siteContent.navigation.rooms}</Link>
-                    <Link to="/feature" style={navLinkStyle}>{siteContent.navigation.feature}</Link>
-                    <Link to="/access" style={navLinkStyle}>{siteContent.navigation.access}</Link>
+                <div style={{ display: 'flex', gap: '2rem', marginRight: '3rem' }} className="hidden-mobile site-header-links">
+                    <Link to="/story" style={navLinkStyle}>{content.navigation.storyConcept}</Link>
+                    <Link to="/rooms" style={navLinkStyle}>{content.navigation.rooms}</Link>
+                    <Link to="/feature" style={navLinkStyle}>{content.navigation.feature}</Link>
+                    <Link to="/access" style={navLinkStyle}>{content.navigation.access}</Link>
                 </div>
 
-                <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-                    <button style={{
-                        background: 'transparent',
-                        border: `1px solid ${isScrolled ? 'var(--color-text)' : 'white'}`,
-                        color: 'inherit',
-                        padding: '8px 16px',
-                        borderRadius: '0',
-                        fontFamily: 'var(--font-sans)',
-                        cursor: 'pointer'
-                    }}>
-                        {siteContent.navigation.language}
-                    </button>
+                <div className="site-header-actions" style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+                    <div className="site-header-language" style={languageWrapperStyle} aria-label={content.navigation.language}>
+                        <button
+                            type="button"
+                            onClick={() => onLocaleChange('jp')}
+                            aria-pressed={locale === 'jp'}
+                            style={{
+                                ...languageButtonStyle,
+                                backgroundColor: locale === 'jp' ? (isScrolled ? 'var(--color-text)' : 'white') : 'transparent',
+                                color: locale === 'jp' ? (isScrolled ? 'white' : 'var(--color-text)') : 'inherit'
+                            }}
+                        >
+                            JP
+                        </button>
+                        <button
+                            type="button"
+                            onClick={() => onLocaleChange('en')}
+                            aria-pressed={locale === 'en'}
+                            style={{
+                                ...languageButtonStyle,
+                                backgroundColor: locale === 'en' ? (isScrolled ? 'var(--color-text)' : 'white') : 'transparent',
+                                color: locale === 'en' ? (isScrolled ? 'white' : 'var(--color-text)') : 'inherit'
+                            }}
+                        >
+                            EN
+                        </button>
+                    </div>
 
-                    <Link to="/booking" style={{
+                    <Link className="site-header-cta" to="/booking" style={{
                         background: isScrolled ? 'var(--color-text)' : 'white',
                         color: isScrolled ? 'white' : 'var(--color-text)',
                         padding: '12px 24px',
@@ -77,12 +113,19 @@ const Header: React.FC = () => {
                         fontWeight: 600,
                         letterSpacing: '0.05em'
                     }}>
-                        {siteContent.navigation.booking}
+                        {content.navigation.booking}
                     </Link>
 
-                    <div className="mobile-menu-toggle" onClick={() => setIsMenuOpen(!isMenuOpen)} style={{ cursor: 'pointer', marginLeft: '20px', display: 'none' }}>
+                    <button
+                        type="button"
+                        className="mobile-menu-toggle"
+                        aria-label="Toggle menu"
+                        aria-expanded={isMenuOpen}
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                        style={{ cursor: 'pointer', marginLeft: '20px', display: 'none', border: 'none', background: 'transparent', color: 'inherit' }}
+                    >
                         {isMenuOpen ? <X /> : <Menu />}
-                    </div>
+                    </button>
                 </div>
             </nav>
 

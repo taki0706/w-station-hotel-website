@@ -1,9 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { siteContent } from '../../content/siteContent';
+import { type SiteContent } from '../../content/siteContent';
 
-const StoryConcept: React.FC = () => {
+type StoryConceptProps = {
+    content: SiteContent;
+};
+
+const StoryConcept: React.FC<StoryConceptProps> = ({ content }) => {
     return (
         <section className="section bg-white" style={{ position: 'relative', overflow: 'hidden' }}>
             <div className="container">
@@ -14,12 +18,12 @@ const StoryConcept: React.FC = () => {
                         viewport={{ once: true }}
                         style={{ fontSize: '3rem', marginBottom: '1rem', fontFamily: 'var(--font-serif)' }}
                     >
-                        {siteContent.storyConcept.heading}
+                        {content.storyConcept.heading}
                     </motion.h2>
                     <p style={{ maxWidth: '600px', margin: '0 auto', color: '#666', fontSize: '0.95rem' }}>
-                        {siteContent.storyConcept.introLine1}<br />
-                        {siteContent.storyConcept.introLine2}<br />
-                        {siteContent.storyConcept.introLine3}
+                        {content.storyConcept.introLine1}<br />
+                        {content.storyConcept.introLine2}<br />
+                        {content.storyConcept.introLine3}
                     </p>
                 </div>
 
@@ -100,7 +104,7 @@ const StoryConcept: React.FC = () => {
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
                     >
-                        <img src={siteContent.storyConcept.kenImageSrc} alt={siteContent.storyConcept.kenImageAlt} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                        <img src={content.storyConcept.kenImageSrc} alt={content.storyConcept.kenImageAlt} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                     </motion.div>
 
                     {/* Main Feature: Ken Text */}
@@ -112,18 +116,18 @@ const StoryConcept: React.FC = () => {
                         transition={{ duration: 0.6, delay: 0.2 }}
                         style={{ backgroundColor: '#F5F5F0' }}
                     >
-                        <h3 style={{ fontSize: '2rem', marginBottom: '1.5rem', fontFamily: 'var(--font-serif)' }}>{siteContent.storyConcept.kenHeading}</h3>
+                        <h3 style={{ fontSize: '2rem', marginBottom: '1.5rem', fontFamily: 'var(--font-serif)' }}>{content.storyConcept.kenHeading}</h3>
                         <p style={{ color: '#444', lineHeight: '1.8', marginBottom: '1.5rem', fontSize: '0.95rem' }}>
-                            {siteContent.storyConcept.kenDescriptionLine1}<br />
-                            {siteContent.storyConcept.kenDescriptionLine2}<br /><br />
-                            {siteContent.storyConcept.kenDescriptionLine3}
+                            {content.storyConcept.kenDescriptionLine1}<br />
+                            {content.storyConcept.kenDescriptionLine2}<br /><br />
+                            {content.storyConcept.kenDescriptionLine3}
                         </p>
                         <Link to="/story" style={{
                             textDecoration: 'underline',
                             fontSize: '0.9rem',
                             letterSpacing: '0.05em'
                         }}>
-                            {siteContent.storyConcept.readStory}
+                            {content.storyConcept.readStory}
                         </Link>
                     </motion.div>
 
@@ -135,11 +139,11 @@ const StoryConcept: React.FC = () => {
                         viewport={{ once: true }}
                         transition={{ delay: 0.3 }}
                     >
-                        <img className="story-small-card-image" src={siteContent.storyConcept.cards.stayWork.imageSrc} alt={siteContent.storyConcept.cards.stayWork.imageAlt} />
+                        <img className="story-small-card-image" src={content.storyConcept.cards.stayWork.imageSrc} alt={content.storyConcept.cards.stayWork.imageAlt} />
                         <div className="story-small-card-overlay">
                             <div>
-                                <h4 className="story-small-card-title">{siteContent.storyConcept.cards.stayWork.title}</h4>
-                                <p className="story-small-card-subtitle">{siteContent.storyConcept.cards.stayWork.subtitle}</p>
+                                <h4 className="story-small-card-title">{content.storyConcept.cards.stayWork.title}</h4>
+                                <p className="story-small-card-subtitle">{content.storyConcept.cards.stayWork.subtitle}</p>
                             </div>
                         </div>
                     </motion.div>
@@ -152,11 +156,11 @@ const StoryConcept: React.FC = () => {
                         viewport={{ once: true }}
                         transition={{ delay: 0.4 }}
                     >
-                        <img className="story-small-card-image" src={siteContent.storyConcept.cards.eco.imageSrc} alt={siteContent.storyConcept.cards.eco.imageAlt} />
+                        <img className="story-small-card-image" src={content.storyConcept.cards.eco.imageSrc} alt={content.storyConcept.cards.eco.imageAlt} />
                         <div className="story-small-card-overlay">
                             <div>
-                                <h4 className="story-small-card-title">{siteContent.storyConcept.cards.eco.title}</h4>
-                                <p className="story-small-card-subtitle">{siteContent.storyConcept.cards.eco.subtitle}</p>
+                                <h4 className="story-small-card-title">{content.storyConcept.cards.eco.title}</h4>
+                                <p className="story-small-card-subtitle">{content.storyConcept.cards.eco.subtitle}</p>
                             </div>
                         </div>
                     </motion.div>
@@ -169,11 +173,11 @@ const StoryConcept: React.FC = () => {
                         viewport={{ once: true }}
                         transition={{ delay: 0.5 }}
                     >
-                        <img className="story-small-card-image" src={siteContent.storyConcept.cards.space.imageSrc} alt={siteContent.storyConcept.cards.space.imageAlt} />
+                        <img className="story-small-card-image" src={content.storyConcept.cards.space.imageSrc} alt={content.storyConcept.cards.space.imageAlt} />
                         <div className="story-small-card-overlay">
                             <div>
-                                <h4 className="story-small-card-title">{siteContent.storyConcept.cards.space.title}</h4>
-                                <p className="story-small-card-subtitle">{siteContent.storyConcept.cards.space.subtitle}</p>
+                                <h4 className="story-small-card-title">{content.storyConcept.cards.space.title}</h4>
+                                <p className="story-small-card-subtitle">{content.storyConcept.cards.space.subtitle}</p>
                             </div>
                         </div>
                     </motion.div>

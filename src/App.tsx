@@ -1,33 +1,40 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import TopPage from './pages/TopPage';
-import { siteContent } from './content/siteContent';
+import { siteContents, type Locale } from './content/siteContent';
 
-// Placeholder pages
-const StoryPage = () => <div className="section container">{siteContent.pages.story}</div>;
-const FeaturePage = () => <div className="section container">{siteContent.pages.feature}</div>;
-const RoomsPage = () => <div className="section container">{siteContent.pages.rooms}</div>;
-const AccessPage = () => <div className="section container">{siteContent.pages.access}</div>;
-const BookingPage = () => <div className="section container">{siteContent.pages.booking}</div>;
+const LOCALE_STORAGE_KEY = 'wstation-locale';
 
 const App: React.FC = () => {
+    const [locale, setLocale] = useState<Locale>(() => {
+        const savedLocale = window.localStorage.getItem(LOCALE_STORAGE_KEY);
+        return savedLocale === 'en' ? 'en' : 'jp';
+    });
+
+    const content = siteContents[locale];
+
+    useEffect(() => {
+        window.localStorage.setItem(LOCALE_STORAGE_KEY, locale);
+        document.documentElement.lang = locale === 'jp' ? 'ja' : 'en';
+    }, [locale]);
+
     return (
         <Router>
             <div className="app">
-                <Header />
+                <Header content={content} locale={locale} onLocaleChange={setLocale} />
                 <main>
                     <Routes>
-                        <Route path="/" element={<TopPage />} />
-                        <Route path="/story" element={<StoryPage />} />
-                        <Route path="/feature" element={<FeaturePage />} />
-                        <Route path="/rooms" element={<RoomsPage />} />
-                        <Route path="/access" element={<AccessPage />} />
-                        <Route path="/booking" element={<BookingPage />} />
+                        <Route path="/" element={<TopPage content={content} />} />
+                        <Route path="/story" element={<div className="section container">{content.pages.story}</div>} />
+                        <Route path="/feature" element={<div className="section container">{content.pages.feature}</div>} />
+                        <Route path="/rooms" element={<div className="section container">{content.pages.rooms}</div>} />
+                        <Route path="/access" element={<div className="section container">{content.pages.access}</div>} />
+                        <Route path="/booking" element={<div className="section container">{content.pages.booking}</div>} />
                     </Routes>
                 </main>
-                <Footer />
+                <Footer content={content} />
             </div>
         </Router>
     );

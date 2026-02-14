@@ -17,7 +17,7 @@ import roomLautrecImage from '../assets/images/rooms/room-lautrec.jpg';
 import roomYumejiImage from '../assets/images/rooms/room-yumeji.jpg';
 import roomMiloImage from '../assets/images/rooms/room-milo.jpg';
 
-export const siteContent = {
+const jpSiteContent = {
     brand: {
         short: 'W.STATION',
         full: 'W.STATION HOTEL'
@@ -25,17 +25,17 @@ export const siteContent = {
     navigation: {
         storyConcept: 'Story & Concept',
         rooms: 'Rooms',
-        feature: 'Feature',
+        feature: 'Features',
         access: 'Access',
         language: 'JP / EN',
-        booking: 'BOOK NOW'
+        booking: '部屋を予約'
     },
     hero: {
         imageSrc: heroMainImage,
         tagline: 'Station Front x Art x Surf & Work x ZEB',
         titleTop: 'W.STATION',
         titleBottom: 'HOTEL',
-        cta: 'CHECK AVAILABILITY',
+        cta: '空き状況を確認する',
     },
     storyConcept: {
         heading: 'Story & Concept',
@@ -151,7 +151,7 @@ export const siteContent = {
     },
     feature: {
         heading: 'Features',
-        description: 'ビル運営のすべてを、ひとつのOSで。',
+        description: 'W.Station ならではの魅力を、ぜひ体感してください。',
         viewAll: 'VIEW ALL FEATURES',
         items: {
             lighting: {
@@ -202,4 +202,201 @@ export const siteContent = {
         access: 'Access Page (Coming Soon)',
         booking: 'Booking Page (Coming Soon)'
     }
-} as const;
+};
+
+export type SiteContent = typeof jpSiteContent;
+export type Locale = 'jp' | 'en';
+
+const enSiteContent: SiteContent = {
+    brand: {
+        short: 'W.STATION',
+        full: 'W.STATION HOTEL'
+    },
+    navigation: {
+        storyConcept: 'Story & Concept',
+        rooms: 'Rooms',
+        feature: 'Features',
+        access: 'Access',
+        language: 'EN / JP',
+        booking: 'BOOK NOW'
+    },
+    hero: {
+        imageSrc: heroMainImage,
+        tagline: 'Station Front x Art x Surf & Work x ZEB',
+        titleTop: 'W.STATION',
+        titleBottom: 'HOTEL',
+        cta: 'CHECK AVAILABILITY',
+    },
+    storyConcept: {
+        heading: 'Story & Concept',
+        introLine1: 'More than just a hotel.',
+        introLine2: 'A place where art, nature, and people intersect.',
+        introLine3: 'Step into the world of W.STATION.',
+        kenImageSrc: storyKenImage,
+        kenImageAlt: 'KEN of the world',
+        kenHeading: 'KEN of the World',
+        kenDescriptionLine1: 'The architectural design was created by "KEN of the World," right after graduating in 2019.',
+        kenDescriptionLine2: 'A one-of-a-kind traveler who has journeyed through 150 countries, from the Arctic to the South Pole.',
+        kenDescriptionLine3: 'Paintings, artworks, and playful ideas collected around the world became "W.STATION HOTEL."',
+        readStory: 'READ THE STORY ->',
+        cards: {
+            stayWork: {
+                imageSrc: storyStayWorkImage,
+                imageAlt: 'Concept',
+                title: 'Concept',
+                subtitle: 'Surf in the morning, remote work with high-speed Wi-Fi in the afternoon'
+            },
+            eco: {
+                imageSrc: storyEcoImage,
+                imageAlt: 'Eco Friendly',
+                title: 'Eco-Friendly Hotel',
+                subtitle: 'ZEB Ready design reducing primary energy consumption by 66%'
+            },
+            space: {
+                imageSrc: storySpaceDesignImage,
+                imageAlt: 'Space Design',
+                title: 'Open Space Design',
+                subtitle: 'A transparent glass-wall design with an expansive sky view'
+            }
+        }
+    },
+    rooms: {
+        heading: 'Guest Rooms',
+        intro: 'Each room is named after a painter, and hand-painted reproductions inspired by their works are drawn directly on the walls. Matching each mural, the bed, desk, bedding, and curtains are coordinated to create a distinct atmosphere in every room.',
+        viewAll: 'VIEW ALL ROOMS',
+        items: [
+            {
+                id: 'van-gogh',
+                imageSrc: roomVanGoghImage,
+                title: 'Van Gogh Room',
+                subtitle: '2 Guests • Double Bed',
+                price: '¥5,500~',
+                details: 'Details',
+                description: 'A room inspired by Van Gogh.'
+            },
+            {
+                id: 'Modigliani',
+                imageSrc: roomModiglianiImage,
+                title: 'Modigliani Room',
+                subtitle: '2 Guests • Queen Bed',
+                price: '¥4,400~',
+                details: 'Details',
+                description: 'A graceful room inspired by Modigliani.'
+            },
+            {
+                id: 'kiss-ring',
+                imageSrc: roomKissRingImage,
+                title: 'Kisling Room',
+                subtitle: '2 Guests • King Bed',
+                price: '¥4,400~',
+                details: 'Details',
+                description: 'A room with the vivid colors of Kisling.'
+            },
+            {
+                id: 'Gauguin',
+                imageSrc: roomGauguinImage,
+                title: 'Gauguin Room',
+                subtitle: '2 Guests • Double Bed',
+                price: '¥3,900~',
+                details: 'Details',
+                description: 'A paradise inspired by Gauguin.'
+            },
+            {
+                id: 'lichtenstein',
+                imageSrc: roomLichtensteinImage,
+                title: 'Lichtenstein Room',
+                subtitle: '2 Guests • Queen Bed',
+                price: '¥3,700~',
+                details: 'Details',
+                description: 'A pop-art inspired room by Lichtenstein.'
+            },
+            {
+                id: 'lautrec',
+                imageSrc: roomLautrecImage,
+                title: 'Lautrec Room',
+                subtitle: '2 Guests • Double Bed',
+                price: '¥4,400~',
+                details: 'Details',
+                description: 'A room inspired by the nightlife of Paris and Lautrec.'
+            },
+            {
+                id: 'Yumeji',
+                imageSrc: roomYumejiImage,
+                title: 'Yumeji Room',
+                subtitle: '2 Guests • Tatami/Bed',
+                price: '¥3,900~',
+                details: 'Details',
+                description: 'A room inspired by the romantic world of Takehisa Yumeji.'
+            },
+            {
+                id: 'milo',
+                imageSrc: roomMiloImage,
+                title: 'Miro Room',
+                subtitle: '2 Guests • King Bed',
+                price: '¥3,900~',
+                details: 'Details',
+                description: 'A fantasy room inspired by Joan Miro.'
+            }
+        ]
+    },
+    feature: {
+        heading: 'Features',
+        description: 'Discover the unique spaces and experiences at W.STATION.',
+        viewAll: 'VIEW ALL FEATURES',
+        items: {
+            lighting: {
+                imageSrc: featureLightingImage,
+                imageAlt: 'Lighting',
+                title: 'Lighting & Design',
+                description: 'Thoughtfully curated lighting and spatial design throughout the hotel.'
+            },
+            bar: {
+                imageSrc: featureNewYorkBarImage,
+                imageAlt: 'New York Bar',
+                title: 'New York (Bath) BAR',
+                description: 'A cafe and bar loved by railway fans. Relax while watching station buildings and trains.'
+            },
+            dining: {
+                imageSrc: featureOpenDiningImage,
+                imageAlt: 'Dining',
+                title: 'Open Dining Kitchen',
+                description: 'A shared kitchen with cookware and seasonings, available for your free use.'
+            },
+            sento: {
+                imageSrc: featureSentoPaintingImage,
+                imageAlt: 'Sento Art',
+                title: 'Sento Mural by Morio Nakajima',
+                description: 'A unique work by Morio Nakajima, one of only a few sento mural artists in Japan.'
+            },
+            art: {
+                imageSrc: featureGalleryArtImage,
+                imageAlt: 'Gallery',
+                title: 'Gallery & Artworks',
+                description: 'The entire hotel is a gallery, offering encounters with numerous artworks.'
+            }
+        }
+    },
+    footer: {
+        descriptionLine1: 'Where your journey becomes a story.',
+        descriptionLine2: 'Experience the art of stay.',
+        navigationHeading: 'NAVIGATION',
+        contactHeading: 'CONTACT',
+        phone: '080-5520-1173',
+        email: 'info@w-station-hotel.com',
+        copyright: 'All rights reserved.'
+    },
+    pages: {
+        story: 'Story & Concept Page (Coming Soon)',
+        feature: 'Feature Page (Coming Soon)',
+        rooms: 'Rooms Page (Coming Soon)',
+        access: 'Access Page (Coming Soon)',
+        booking: 'Booking Page (Coming Soon)'
+    }
+};
+
+export const siteContents: Record<Locale, SiteContent> = {
+    jp: jpSiteContent,
+    en: enSiteContent
+};
+
+export const siteContent = siteContents.jp;

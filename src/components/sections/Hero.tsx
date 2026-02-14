@@ -1,9 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { siteContent } from '../../content/siteContent';
+import { type SiteContent } from '../../content/siteContent';
 
-const Hero: React.FC = () => {
+type HeroProps = {
+    content: SiteContent;
+};
+
+const Hero: React.FC<HeroProps> = ({ content }) => {
     return (
         <section className="hero" style={{
             height: '100vh',
@@ -21,7 +25,7 @@ const Hero: React.FC = () => {
                 left: 0,
                 width: '100%',
                 height: '100%',
-                backgroundImage: `url(${siteContent.hero.imageSrc})`,
+                backgroundImage: `url(${content.hero.imageSrc})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 zIndex: -1
@@ -49,7 +53,7 @@ const Hero: React.FC = () => {
                         fontFamily: 'var(--font-sans)',
                         textTransform: 'uppercase'
                     }}>
-                        {siteContent.hero.tagline}
+                        {content.hero.tagline}
                     </h2>
                     <h1 style={{
                         fontSize: 'clamp(3rem, 8vw, 6rem)',
@@ -57,7 +61,7 @@ const Hero: React.FC = () => {
                         lineHeight: 1.1,
                         fontFamily: 'var(--font-serif)'
                     }}>
-                        {siteContent.hero.titleTop}<br />{siteContent.hero.titleBottom}
+                        {content.hero.titleTop}<br />{content.hero.titleBottom}
                     </h1>
 
                     <motion.div
@@ -86,7 +90,7 @@ const Hero: React.FC = () => {
                                 e.currentTarget.style.color = 'white';
                             }}
                         >
-                            {siteContent.hero.cta}
+                            {content.hero.cta}
                         </Link>
                     </motion.div>
                 </motion.div>
