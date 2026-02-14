@@ -1,5 +1,6 @@
 import React from 'react';
 import { type AccessPageContent } from '../../content/accessPageContent';
+import { TrainFront, BusFront, CarFront } from 'lucide-react';
 
 type AccessTransportSectionProps = {
     content: AccessPageContent['transportSection'];
@@ -14,7 +15,11 @@ const AccessTransportSection: React.FC<AccessTransportSectionProps> = ({ content
                 <div className="transport-grid">
                     {content.methods.map((method) => (
                         <div key={method.id} className="transport-card">
-                            <div className="transport-icon">{method.icon}</div>
+                            <div className="transport-icon">
+                                {method.icon === 'train' && <TrainFront size={32} />}
+                                {method.icon === 'bus' && <BusFront size={32} />}
+                                {method.icon === 'car' && <CarFront size={32} />}
+                            </div>
                             <h3 className="transport-title">{method.title}</h3>
                             <div className="transport-routes">
                                 {method.routes.map((route, index) => (

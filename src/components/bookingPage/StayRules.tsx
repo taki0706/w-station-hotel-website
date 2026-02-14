@@ -54,7 +54,7 @@ const StayRules: React.FC<StayRulesProps> = ({ content }) => {
                         fontSize: '1.1rem',
                         color: '#666'
                     }}>
-                        快適な滞在のために、以下のルールをお守りください
+                        {content.stayRules.description}
                     </p>
                 </motion.div>
 

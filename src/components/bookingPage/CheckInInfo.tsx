@@ -73,7 +73,7 @@ const CheckInInfo: React.FC<CheckInInfoProps> = ({ content }) => {
                         marginBottom: '1.5rem',
                         textAlign: 'center'
                     }}>
-                        チェックイン手順
+                        {content.checkIn.instructionsHeading}
                     </h3>
 
                     <div style={{

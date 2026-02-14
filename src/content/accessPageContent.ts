@@ -27,7 +27,7 @@ const jpAccessPageContent = {
     methods: [
       {
         id: 'train',
-        icon: '🚆',
+        icon: 'train',
         title: '電車でのアクセス',
         routes: [
           {
@@ -44,7 +44,7 @@ const jpAccessPageContent = {
       },
       {
         id: 'bus',
-        icon: '🚌',
+        icon: 'bus',
         title: 'バスでのアクセス',
         routes: [
           {
@@ -61,7 +61,7 @@ const jpAccessPageContent = {
       },
       {
         id: 'car',
-        icon: '🚗',
+        icon: 'car',
         title: '車でのアクセス',
         routes: [
           {
@@ -137,7 +137,7 @@ const enAccessPageContent: AccessPageContent = {
     methods: [
       {
         id: 'train',
-        icon: '🚆',
+        icon: 'train',
         title: 'By Train',
         routes: [
           {
@@ -154,7 +154,7 @@ const enAccessPageContent: AccessPageContent = {
       },
       {
         id: 'bus',
-        icon: '🚌',
+        icon: 'bus',
         title: 'By Bus',
         routes: [
           {
@@ -171,7 +171,7 @@ const enAccessPageContent: AccessPageContent = {
       },
       {
         id: 'car',
-        icon: '🚗',
+        icon: 'car',
         title: 'By Car',
         routes: [
           {

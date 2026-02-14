@@ -127,11 +127,14 @@ const jpBookingPageContent = {
     heading: '宿泊料金（朝食付）',
     description: '各部屋の詳細料金については、予約ボタンからご確認ください。',
     breakfast: 'セルフ朝食（トースト、ゆで卵、挽きたてコーヒー）',
-    note: 'シーズンやキャンペーンによって変動する可能性があります。'
+    note: 'シーズンやキャンペーンによって変動する可能性があります。',
+    notePrefix: '※',
+    priceFromSuffix: '〜'
   },
 
   checkIn: {
     heading: '無人チェックイン',
+    instructionsHeading: 'チェックイン手順',
     methodDescription: '事前精算及び宿泊者登録をお願いしております。',
     instructions: [
       '予約完了後、メールにてチェックイン手順をお送りします',
@@ -172,6 +175,7 @@ const jpBookingPageContent = {
 
   stayRules: {
     heading: '滞在ルール',
+    description: '快適な滞在のために、以下のルールをお守りください',
     items: [
       {
         title: '館内土足禁止',
@@ -199,7 +203,9 @@ const jpBookingPageContent = {
   cta: {
     heading: 'お部屋を選んで予約',
     description: '画像をクリックして予約ページへお進みください',
-    bookButton: '予約する'
+    bookButton: '予約する',
+    previousRoomAriaLabel: '前の部屋',
+    nextRoomAriaLabel: '次の部屋'
   }
 };
 
@@ -323,11 +329,14 @@ const enBookingPageContent: BookingPageContent = {
     heading: 'Room Rates (Breakfast Included)',
     description: 'Please check the booking page for detailed rates for each room.',
     breakfast: 'Self-service breakfast (toast, boiled eggs, freshly ground coffee)',
-    note: 'Rates may vary depending on season and campaigns.'
+    note: 'Rates may vary depending on season and campaigns.',
+    notePrefix: 'Note:',
+    priceFromSuffix: '~'
   },
 
   checkIn: {
     heading: 'Self Check-in',
+    instructionsHeading: 'Check-in Steps',
     methodDescription: 'Advance payment and guest registration are required.',
     instructions: [
       'Check-in instructions will be sent via email after booking confirmation',
@@ -368,6 +377,7 @@ const enBookingPageContent: BookingPageContent = {
 
   stayRules: {
     heading: 'Stay Rules',
+    description: 'Please follow the rules below for a comfortable stay.',
     items: [
       {
         title: 'Shoes Off Inside',
@@ -395,7 +405,9 @@ const enBookingPageContent: BookingPageContent = {
   cta: {
     heading: 'Select Your Room and Book',
     description: 'Click on the image to proceed to the booking page',
-    bookButton: 'Book Now'
+    bookButton: 'Book Now',
+    previousRoomAriaLabel: 'Previous room',
+    nextRoomAriaLabel: 'Next room'
   }
 };
 

@@ -162,7 +162,7 @@ const RoomsList: React.FC<RoomsListProps> = ({ content }) => {
                     <button
                         className="scroll-button prev"
                         onClick={() => scroll('left')}
-                        aria-label="Previous room"
+                        aria-label={content.cta.previousRoomAriaLabel}
                     >
                         <ChevronLeft size={24} strokeWidth={1.5} />
                     </button>
@@ -304,7 +304,7 @@ const RoomsList: React.FC<RoomsListProps> = ({ content }) => {
                                             fontFamily: "'Montserrat', sans-serif",
                                             color: '#333'
                                         }}>
-                                            {room.priceFrom}〜
+                                            {room.priceFrom}{content.priceInfo.priceFromSuffix}
                                         </span>
 
                                         <div style={{
@@ -342,7 +342,7 @@ const RoomsList: React.FC<RoomsListProps> = ({ content }) => {
                     <button
                         className="scroll-button next"
                         onClick={() => scroll('right')}
-                        aria-label="Next room"
+                        aria-label={content.cta.nextRoomAriaLabel}
                     >
                         <ChevronRight size={24} strokeWidth={1.5} />
                     </button>
@@ -391,7 +391,7 @@ const RoomsList: React.FC<RoomsListProps> = ({ content }) => {
                         color: '#999',
                         marginTop: '1rem'
                     }}>
-                        ※ {content.priceInfo.note}
+                        {content.priceInfo.notePrefix} {content.priceInfo.note}
                     </p>
                 </motion.div>
             </div>
