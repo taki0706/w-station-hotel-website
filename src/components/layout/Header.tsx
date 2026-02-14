@@ -24,7 +24,20 @@ const Header: React.FC<HeaderProps> = ({ content, locale, onLocaleChange }) => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    useEffect(() => {
+        setIsMenuOpen(false);
+    }, [location.pathname, location.hash]);
+
+    useEffect(() => {
+        document.body.style.overflow = isMenuOpen ? 'hidden' : '';
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, [isMenuOpen]);
+
     const isSolidHeader = isScrolled || location.pathname !== '/';
+    const menuSurfaceColor = isSolidHeader ? 'rgba(255, 255, 255, 0.98)' : 'rgba(17, 17, 17, 0.96)';
+    const menuTextColor = isSolidHeader ? 'var(--color-text)' : 'white';
 
     // Header styles
     const headerStyle: React.CSSProperties = {
@@ -67,74 +80,122 @@ const Header: React.FC<HeaderProps> = ({ content, locale, onLocaleChange }) => {
         border: `1px solid ${isSolidHeader ? 'var(--color-text)' : 'white'}`
     };
 
-    return (
-        <header className="site-header" style={headerStyle}>
-            <div className="site-header-title" style={{ fontSize: '1.5rem', fontWeight: 600, fontFamily: 'var(--font-serif)' }}>
-                <Link to="/">{content.brand.short}</Link>
-            </div>
+    const handleLocaleChange = (nextLocale: Locale) => {
+        onLocaleChange(nextLocale);
+        setIsMenuOpen(false);
+    };
 
-            <nav className="desktop-nav" style={{ display: 'flex', alignItems: 'center' }}>
-                <div style={{ display: 'flex', gap: '2rem', marginRight: '3rem' }} className="hidden-mobile site-header-links">
-                    <Link to="/story" style={navLinkStyle}>{content.navigation.storyConcept}</Link>
-                    <Link to="/feature" style={navLinkStyle}>{content.navigation.feature}</Link>
-                    <Link to="/access" style={navLinkStyle}>{content.navigation.access}</Link>
+    const handleMenuToggle = () => {
+        setIsMenuOpen((prev) => !prev);
+    };
+
+    const closeMenu = () => {
+        setIsMenuOpen(false);
+    };
+
+    return (
+        <>
+            <header className="site-header" style={headerStyle}>
+                <div className="site-header-title" style={{ fontSize: '1.5rem', fontWeight: 600, fontFamily: 'var(--font-serif)' }}>
+                    <Link to="/">{content.brand.short}</Link>
                 </div>
 
-                <div className="site-header-actions" style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-                    <div className="site-header-language" style={languageWrapperStyle} aria-label={content.navigation.language}>
-                        <button
-                            type="button"
-                            onClick={() => onLocaleChange('jp')}
-                            aria-pressed={locale === 'jp'}
-                            style={{
-                                ...languageButtonStyle,
-                                backgroundColor: locale === 'jp' ? (isSolidHeader ? 'var(--color-text)' : 'white') : 'transparent',
-                                color: locale === 'jp' ? (isSolidHeader ? 'white' : 'var(--color-text)') : 'inherit'
-                            }}
-                        >
-                            JP
-                        </button>
-                        <button
-                            type="button"
-                            onClick={() => onLocaleChange('en')}
-                            aria-pressed={locale === 'en'}
-                            style={{
-                                ...languageButtonStyle,
-                                backgroundColor: locale === 'en' ? (isSolidHeader ? 'var(--color-text)' : 'white') : 'transparent',
-                                color: locale === 'en' ? (isSolidHeader ? 'white' : 'var(--color-text)') : 'inherit'
-                            }}
-                        >
-                            EN
-                        </button>
+                <nav className="desktop-nav" style={{ display: 'flex', alignItems: 'center' }}>
+                    <div style={{ display: 'flex', gap: '2rem', marginRight: '3rem' }} className="hidden-mobile site-header-links">
+                        <Link to="/story" style={navLinkStyle}>{content.navigation.storyConcept}</Link>
+                        <Link to="/feature" style={navLinkStyle}>{content.navigation.feature}</Link>
+                        <Link to="/access" style={navLinkStyle}>{content.navigation.access}</Link>
                     </div>
 
-                    <Link className="site-header-cta" to="/booking" style={{
-                        background: isSolidHeader ? 'var(--color-text)' : 'white',
-                        color: isSolidHeader ? 'white' : 'var(--color-text)',
-                        padding: '12px 24px',
-                        textDecoration: 'none',
-                        fontFamily: 'var(--font-sans)',
-                        fontWeight: 600,
-                        letterSpacing: '0.05em'
-                    }}>
+                    <div className="site-header-actions" style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+                        <div className="site-header-language" style={languageWrapperStyle} aria-label={content.navigation.language}>
+                            <button
+                                type="button"
+                                onClick={() => handleLocaleChange('jp')}
+                                aria-pressed={locale === 'jp'}
+                                style={{
+                                    ...languageButtonStyle,
+                                    backgroundColor: locale === 'jp' ? (isSolidHeader ? 'var(--color-text)' : 'white') : 'transparent',
+                                    color: locale === 'jp' ? (isSolidHeader ? 'white' : 'var(--color-text)') : 'inherit'
+                                }}
+                            >
+                                JP
+                            </button>
+                            <button
+                                type="button"
+                                onClick={() => handleLocaleChange('en')}
+                                aria-pressed={locale === 'en'}
+                                style={{
+                                    ...languageButtonStyle,
+                                    backgroundColor: locale === 'en' ? (isSolidHeader ? 'var(--color-text)' : 'white') : 'transparent',
+                                    color: locale === 'en' ? (isSolidHeader ? 'white' : 'var(--color-text)') : 'inherit'
+                                }}
+                            >
+                                EN
+                            </button>
+                        </div>
+
+                        <Link className="site-header-cta" to="/booking" style={{
+                            background: isSolidHeader ? 'var(--color-text)' : 'white',
+                            color: isSolidHeader ? 'white' : 'var(--color-text)',
+                            padding: '12px 24px',
+                            textDecoration: 'none',
+                            fontFamily: 'var(--font-sans)',
+                            fontWeight: 600,
+                            letterSpacing: '0.05em'
+                        }}>
+                            {content.navigation.booking}
+                        </Link>
+
+                        <button
+                            type="button"
+                            className="mobile-menu-toggle"
+                            aria-label="Toggle menu"
+                            aria-expanded={isMenuOpen}
+                            onClick={handleMenuToggle}
+                            style={{ cursor: 'pointer', marginLeft: '20px', display: 'none', border: 'none', background: 'transparent', color: 'inherit' }}
+                        >
+                            {isMenuOpen ? <X /> : <Menu />}
+                        </button>
+                    </div>
+                </nav>
+            </header>
+
+            <div
+                className={`mobile-menu-overlay ${isMenuOpen ? 'open' : ''}`}
+                style={
+                    {
+                        '--mobile-menu-bg': menuSurfaceColor,
+                        '--mobile-menu-color': menuTextColor
+                    } as React.CSSProperties
+                }
+                aria-hidden={!isMenuOpen}
+            >
+                <nav className="mobile-menu-panel" aria-label="Mobile Navigation">
+                    <Link className="mobile-menu-link" to="/story" onClick={closeMenu}>
+                        {content.navigation.storyConcept}
+                    </Link>
+                    <Link className="mobile-menu-link" to="/feature" onClick={closeMenu}>
+                        {content.navigation.feature}
+                    </Link>
+                    <Link className="mobile-menu-link" to="/access" onClick={closeMenu}>
+                        {content.navigation.access}
+                    </Link>
+                    <Link className="mobile-menu-link mobile-menu-link-cta" to="/booking" onClick={closeMenu}>
                         {content.navigation.booking}
                     </Link>
 
-                    <button
-                        type="button"
-                        className="mobile-menu-toggle"
-                        aria-label="Toggle menu"
-                        aria-expanded={isMenuOpen}
-                        onClick={() => setIsMenuOpen(!isMenuOpen)}
-                        style={{ cursor: 'pointer', marginLeft: '20px', display: 'none', border: 'none', background: 'transparent', color: 'inherit' }}
-                    >
-                        {isMenuOpen ? <X /> : <Menu />}
-                    </button>
-                </div>
-            </nav>
-
-            {/* Simple Mobile Menu Overlay - To be improved with CSS properly */}
-        </header>
+                    <div className="mobile-menu-language" aria-label={content.navigation.language}>
+                        <button type="button" onClick={() => handleLocaleChange('jp')} aria-pressed={locale === 'jp'}>
+                            JP
+                        </button>
+                        <button type="button" onClick={() => handleLocaleChange('en')} aria-pressed={locale === 'en'}>
+                            EN
+                        </button>
+                    </div>
+                </nav>
+            </div>
+        </>
     );
 };
 
