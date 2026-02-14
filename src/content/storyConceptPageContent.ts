@@ -228,50 +228,6 @@ const enStoryConceptPageContent: StoryConceptPageContent = {
     description: 'An open design where you can see the sky through transparent glass walls. We promise a comfortable stay in bright and spacious areas that maximize natural light.',
     imageSrc: storySpaceDesignImage,
     imageAlt: 'Space Design'
-  },
-
-  recommendedPlansSection: {
-    id: 'recommended-plans',
-    heading: 'Recommended Stay Plans',
-    subheading: 'Find Your Perfect Stay Style',
-    plans: [
-      {
-        id: 'surf',
-        title: 'Surf Plan',
-        description: 'Target the early morning waves, within walking distance to the beach. Surfboard storage space available.',
-        features: [
-          'Walking distance to beach',
-          'Surfboard storage space',
-          'Breakfast service',
-          'Shower facilities'
-        ],
-        imageAlt: 'Surf Plan'
-      },
-      {
-        id: 'workation',
-        title: 'Workation Plan',
-        description: 'High-speed Wi-Fi and comfortable work environment for fulfilling work and play. Long-term stays supported.',
-        features: [
-          'High-speed Wi-Fi',
-          'Comfortable work desk',
-          'Open dining kitchen available',
-          'Long-term stay discount'
-        ],
-        imageAlt: 'Workation Plan'
-      },
-      {
-        id: 'art',
-        title: 'Art Stay Plan',
-        description: 'The entire hotel is a gallery. Special time surrounded by artworks from around the world.',
-        features: [
-          'Hotel art tour',
-          'Painter-named guest rooms',
-          'Sento artist Morio Nakajima\'s work viewing',
-          'Art creation space available'
-        ],
-        imageAlt: 'Art Stay Plan'
-      }
-    ]
   }
 };
 

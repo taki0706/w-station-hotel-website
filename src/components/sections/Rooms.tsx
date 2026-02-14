@@ -1,13 +1,29 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { type SiteContent } from '../../content/siteContent';
 
 type RoomsProps = {
     content: SiteContent;
 };
 
+const ROOM_ID_TO_BOOKING_ROOM_ID: Record<string, string> = {
+    'kiss-ring': 'kisling',
+    milo: 'miro'
+};
+
+const resolveBookingRoomId = (roomId: string): string => {
+    const normalizedRoomId = roomId.toLowerCase();
+    return ROOM_ID_TO_BOOKING_ROOM_ID[normalizedRoomId] ?? normalizedRoomId;
+};
+
 const Rooms: React.FC<RoomsProps> = ({ content }) => {
+    const navigate = useNavigate();
+
+    const handleRoomCardClick = (roomId: string) => {
+        const bookingRoomId = resolveBookingRoomId(roomId);
+        navigate(`/booking#room-${bookingRoomId}`);
+    };
 
     return (
         <section className="section" style={{ backgroundColor: '#f4f4f4', padding: '80px 20px' }}>
@@ -38,7 +54,7 @@ const Rooms: React.FC<RoomsProps> = ({ content }) => {
                         >
                             {content.rooms.heading}
                         </motion.h2>
-                        <Link to="/rooms" style={{ borderBottom: '1px solid black', fontSize: '0.9rem', letterSpacing: '0.05em', whiteSpace: 'nowrap', display: 'inline-flex', alignItems: 'center', lineHeight: 1.2 }}>
+                        <Link to="/booking" style={{ borderBottom: '1px solid black', fontSize: '0.9rem', letterSpacing: '0.05em', whiteSpace: 'nowrap', display: 'inline-flex', alignItems: 'center', lineHeight: 1.2 }}>
                             {content.rooms.viewAll}
                         </Link>
                     </div>
@@ -107,6 +123,15 @@ const Rooms: React.FC<RoomsProps> = ({ content }) => {
                                 transition: 'transform 0.3s ease',
                                 cursor: 'pointer'
                             }}
+                            onClick={() => handleRoomCardClick(room.id)}
+                            onKeyDown={(event) => {
+                                if (event.key === 'Enter' || event.key === ' ') {
+                                    event.preventDefault();
+                                    handleRoomCardClick(room.id);
+                                }
+                            }}
+                            role="link"
+                            tabIndex={0}
                         >
                             <div style={{ height: '250px', overflow: 'hidden', position: 'relative' }}>
                                 <img

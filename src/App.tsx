@@ -4,8 +4,12 @@ import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import TopPage from './pages/TopPage';
 import StoryConceptPage from './pages/StoryConceptPage';
+import FeaturePage from './pages/FeaturePage';
+import BookingPage from './pages/BookingPage';
 import { siteContents, type Locale } from './content/siteContent';
 import { storyConceptPageContents } from './content/storyConceptPageContent';
+import { featurePageContents } from './content/featurePageContent';
+import { bookingPageContents } from './content/bookingPageContent';
 
 const LOCALE_STORAGE_KEY = 'wstation-locale';
 
@@ -17,6 +21,8 @@ const App: React.FC = () => {
 
     const content = siteContents[locale];
     const storyConceptContent = storyConceptPageContents[locale];
+    const featureContent = featurePageContents[locale];
+    const bookingContent = bookingPageContents[locale];
 
     useEffect(() => {
         window.localStorage.setItem(LOCALE_STORAGE_KEY, locale);
@@ -31,10 +37,9 @@ const App: React.FC = () => {
                     <Routes>
                         <Route path="/" element={<TopPage content={content} />} />
                         <Route path="/story" element={<StoryConceptPage content={storyConceptContent} />} />
-                        <Route path="/feature" element={<div className="section container">{content.pages.feature}</div>} />
-                        <Route path="/rooms" element={<div className="section container">{content.pages.rooms}</div>} />
+                        <Route path="/feature" element={<FeaturePage content={featureContent} />} />
                         <Route path="/access" element={<div className="section container">{content.pages.access}</div>} />
-                        <Route path="/booking" element={<div className="section container">{content.pages.booking}</div>} />
+                        <Route path="/booking" element={<BookingPage content={bookingContent} />} />
                     </Routes>
                 </main>
                 <Footer content={content} />

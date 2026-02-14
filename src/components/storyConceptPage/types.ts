@@ -5,4 +5,3 @@ export type KenSectionContent = StoryConceptPageContent['kenSection'];
 export type StayStyleSectionContent = StoryConceptPageContent['stayStyleSection'];
 export type EcoSectionContent = StoryConceptPageContent['ecoSection'];
 export type SpaceDesignSectionContent = StoryConceptPageContent['spaceDesignSection'];
-export type RecommendedPlansSectionContent = StoryConceptPageContent['recommendedPlansSection'];

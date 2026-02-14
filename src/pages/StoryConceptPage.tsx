@@ -6,7 +6,6 @@ import {
     StoryEcoSection,
     StoryHeroSection,
     StoryKenSection,
-    StoryRecommendedPlansSection,
     StorySpaceDesignSection,
     StoryStayStyleSection
 } from '../components/storyConceptPage';

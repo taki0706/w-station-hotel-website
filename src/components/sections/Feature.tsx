@@ -1,13 +1,28 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { type SiteContent } from '../../content/siteContent';
 
 type FeatureProps = {
     content: SiteContent;
 };
 
+const FEATURE_CARD_KEY_TO_SECTION_ID: Record<string, string> = {
+    art: 'gallery'
+};
+
+const resolveFeatureSectionId = (cardKey: string): string => {
+    return FEATURE_CARD_KEY_TO_SECTION_ID[cardKey] ?? cardKey;
+};
+
 const Feature: React.FC<FeatureProps> = ({ content }) => {
+    const navigate = useNavigate();
+
+    const handleFeatureCardClick = (cardKey: string) => {
+        const sectionId = resolveFeatureSectionId(cardKey);
+        navigate(`/feature#${sectionId}`);
+    };
+
     const featureCards = [
         {
             key: 'bar',
@@ -101,7 +116,16 @@ const Feature: React.FC<FeatureProps> = ({ content }) => {
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
                             transition={card.delay > 0 ? { delay: card.delay } : undefined}
-                            style={{ position: 'relative' }}
+                            style={{ position: 'relative', cursor: 'pointer' }}
+                            onClick={() => handleFeatureCardClick(card.key)}
+                            onKeyDown={(event) => {
+                                if (event.key === 'Enter' || event.key === ' ') {
+                                    event.preventDefault();
+                                    handleFeatureCardClick(card.key);
+                                }
+                            }}
+                            role="link"
+                            tabIndex={0}
                         >
                             <img
                                 className="feature-card-image"

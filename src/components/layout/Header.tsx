@@ -76,7 +76,6 @@ const Header: React.FC<HeaderProps> = ({ content, locale, onLocaleChange }) => {
             <nav className="desktop-nav" style={{ display: 'flex', alignItems: 'center' }}>
                 <div style={{ display: 'flex', gap: '2rem', marginRight: '3rem' }} className="hidden-mobile site-header-links">
                     <Link to="/story" style={navLinkStyle}>{content.navigation.storyConcept}</Link>
-                    <Link to="/rooms" style={navLinkStyle}>{content.navigation.rooms}</Link>
                     <Link to="/feature" style={navLinkStyle}>{content.navigation.feature}</Link>
                     <Link to="/access" style={navLinkStyle}>{content.navigation.access}</Link>
                 </div>
