@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { type SentoSectionContent } from './types';
+import FeatureImageCarousel from './FeatureImageCarousel';
 
 type FeatureSentoSectionProps = {
     content: SentoSectionContent;
@@ -35,15 +36,11 @@ const FeatureSentoSection: React.FC<FeatureSentoSectionProps> = ({ content }) =>
                             </a>
                         </div>
                     </motion.div>
-                    <motion.div
-                        className="feature-image-wrapper"
-                        initial={{ opacity: 0, x: 30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: 0.2 }}
-                    >
-                        <img src={content.imageSrc} alt={content.imageAlt} className="feature-image" />
-                    </motion.div>
+                    <FeatureImageCarousel
+                        images={content.images}
+                        sectionHeading={content.heading}
+                        animationDelay={0.2}
+                    />
                 </div>
             </div>
         </section>

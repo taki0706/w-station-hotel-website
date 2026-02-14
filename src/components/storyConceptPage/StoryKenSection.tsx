@@ -13,8 +13,8 @@ const StoryKenSection: React.FC<StoryKenSectionProps> = ({ content }) => {
                 <div className="ken-grid">
                     <motion.div
                         className="ken-image-wrapper"
-                        initial={{ opacity: 0, x: -30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
+                        initial={{ opacity: 0, scale: 0.98 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
                     >
@@ -22,7 +22,7 @@ const StoryKenSection: React.FC<StoryKenSectionProps> = ({ content }) => {
                     </motion.div>
                     <motion.div
                         className="ken-content"
-                        initial={{ opacity: 0, x: 30 }}
+                        initial={{ opacity: 0, x: 20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.2 }}

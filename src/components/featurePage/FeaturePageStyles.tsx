@@ -74,6 +74,16 @@ const FeaturePageStyles: React.FC = () => {
                 border-radius: 4px;
                 box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             }
+            .feature-image-carousel {
+                min-height: 280px;
+                aspect-ratio: 4 / 3;
+                background: #f3f3ec;
+            }
+            .feature-image-carousel .feature-image {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
             .feature-image {
                 width: 100%;
                 height: auto;
@@ -82,6 +92,50 @@ const FeaturePageStyles: React.FC = () => {
             }
             .feature-image-wrapper:hover .feature-image {
                 transform: scale(1.05);
+            }
+            .feature-scroll-button {
+                display: flex;
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                z-index: 10;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background-color: rgba(255, 255, 255, 0.9);
+                backdrop-filter: blur(8px);
+                border: 1px solid rgba(0, 0, 0, 0.05);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                color: #333;
+                transition: all 0.3s ease;
+                opacity: 0.9;
+            }
+            .feature-scroll-button:active {
+                transform: translateY(-50%) scale(0.95);
+                background-color: rgba(255, 255, 255, 0.95);
+            }
+            .feature-scroll-button.prev {
+                left: 14px;
+            }
+            .feature-scroll-button.next {
+                right: 14px;
+            }
+            .feature-image-counter {
+                position: absolute;
+                right: 14px;
+                bottom: 14px;
+                margin: 0;
+                padding: 6px 10px;
+                border-radius: 999px;
+                background-color: rgba(0, 0, 0, 0.58);
+                color: var(--color-white);
+                font-family: var(--font-sans);
+                font-size: 0.8rem;
+                letter-spacing: 0.02em;
+                line-height: 1;
             }
 
             .feature-content h2 {
@@ -220,6 +274,21 @@ const FeaturePageStyles: React.FC = () => {
                 }
                 .feature-content h2 {
                     font-size: 2rem;
+                }
+                .feature-scroll-button {
+                    width: 36px;
+                    height: 36px;
+                }
+                .feature-scroll-button.prev {
+                    left: 10px;
+                }
+                .feature-scroll-button.next {
+                    right: 10px;
+                }
+                .feature-image-counter {
+                    right: 10px;
+                    bottom: 10px;
+                    font-size: 0.75rem;
                 }
 
                 .artist-info {

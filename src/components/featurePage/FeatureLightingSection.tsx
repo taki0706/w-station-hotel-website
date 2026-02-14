@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { type LightingSectionContent } from './types';
+import FeatureImageCarousel from './FeatureImageCarousel';
 
 type FeatureLightingSectionProps = {
     content: LightingSectionContent;
@@ -11,15 +12,7 @@ const FeatureLightingSection: React.FC<FeatureLightingSectionProps> = ({ content
         <section id={content.id} className="section feature-section">
             <div className="container">
                 <div className="feature-grid">
-                    <motion.div
-                        className="feature-image-wrapper"
-                        initial={{ opacity: 0, x: -30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                    >
-                        <img src={content.imageSrc} alt={content.imageAlt} className="feature-image" />
-                    </motion.div>
+                    <FeatureImageCarousel images={content.images} sectionHeading={content.heading} />
                     <motion.div
                         className="feature-content"
                         initial={{ opacity: 0, x: 30 }}

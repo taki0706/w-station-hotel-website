@@ -4,13 +4,17 @@ export type HeroContent = {
     description: string;
 };
 
+export type FeatureImage = {
+    src: string;
+    alt: string;
+};
+
 export type LightingSectionContent = {
     id: string;
     heading: string;
     subheading: string;
     description: string;
-    imageSrc: string;
-    imageAlt: string;
+    images: FeatureImage[];
     features: string[];
 };
 
@@ -19,8 +23,7 @@ export type SentoSectionContent = {
     heading: string;
     subheading: string;
     description: string;
-    imageSrc: string;
-    imageAlt: string;
+    images: FeatureImage[];
     artist: {
         name: string;
         title: string;
@@ -35,8 +38,7 @@ export type GallerySectionContent = {
     heading: string;
     subheading: string;
     description: string;
-    imageSrc: string;
-    imageAlt: string;
+    images: FeatureImage[];
     highlights: string[];
 };
 
@@ -45,8 +47,7 @@ export type DiningSectionContent = {
     heading: string;
     subheading: string;
     description: string;
-    imageSrc: string;
-    imageAlt: string;
+    images: FeatureImage[];
     facilities: string[];
     note: string;
 };
@@ -56,8 +57,7 @@ export type BarSectionContent = {
     heading: string;
     subheading: string;
     description: string;
-    imageSrc: string;
-    imageAlt: string;
+    images: FeatureImage[];
     features: string[];
     note: string;
     additionalInfo: string;
